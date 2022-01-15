@@ -84,6 +84,12 @@ class _ShippingPageState extends State<ShippingPage> {
           message: 'fild tidak boleh kosong',
         ).show(context);
       } else {
+        print(user.id);
+        print(namaController.text);
+        print(alamatController.text);
+        print(nohpController.text);
+        print(quantityController.text);
+        print(produk.harga);
         //prosess register
         if (await pesananProvider.postPesanan(
             id_konsumen: user.id,
@@ -92,13 +98,13 @@ class _ShippingPageState extends State<ShippingPage> {
             hp_penerima: nohpController.text,
             kg: quantityController.text,
             total: produk.harga.toString())) {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/detail-pesanan');
         } else {
           Flushbar(
             duration: Duration(seconds: 4),
             flushbarPosition: FlushbarPosition.TOP,
             backgroundColor: Color(0xffff5c83),
-            message: 'Email sudah di gunakan',
+            message: 'Gagal Order Pesanan, Cobalagi Nanti',
           ).show(context);
         }
       }
@@ -108,7 +114,6 @@ class _ShippingPageState extends State<ShippingPage> {
       });
     }
 
-    
     Widget header() {
       return Container(
         margin: EdgeInsets.only(top: 30),
@@ -303,7 +308,6 @@ class _ShippingPageState extends State<ShippingPage> {
 
     Widget quantity() {
       return Container(
-        
         margin: EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -346,7 +350,7 @@ class _ShippingPageState extends State<ShippingPage> {
                         // controller: _controller,
                         keyboardType: TextInputType.number,
                         controller: quantityController,
-                        
+
                         decoration: InputDecoration.collapsed(
                           hintText: 'Jumlah Quantity',
                           hintStyle: subtitleTextStyle,
@@ -365,7 +369,6 @@ class _ShippingPageState extends State<ShippingPage> {
     Widget totalBayar() {
       return Container(
         margin: EdgeInsets.only(top: 20),
-        
         child: Column(
           children: [
             Row(
@@ -416,10 +419,11 @@ class _ShippingPageState extends State<ShippingPage> {
       return Container(
         height: 50,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: 30, bottom: 20),
         child: TextButton(
-          onPressed: (){Navigator.pushNamed(context, '/detail-pesanan');},
-          // handlePesanan,
+          onPressed:
+              // (){Navigator.pushNamed(context, '/detail-pesanan');},
+              handlePesanan,
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(

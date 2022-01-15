@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:apps/model/produk_model.dart';
+import 'package:apps/service/server.dart';
 import 'package:http/http.dart' as http;
 
 class ProdukServices {
-  String baseUrl = 'http://10.0.2.2/ikan/';
+  // String baseUrl = 'http://10.0.2.2/ikan/';
 
 
   Future<ProdukModel> getProduk({String id}) async {

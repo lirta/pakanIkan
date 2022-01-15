@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:apps/model/user_model.dart';
+import 'package:apps/service/server.dart';
 import 'package:http/http.dart' as http;
 import 'package:apps/provider/auth_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServices {
-  String baseUrl = 'http://10.0.2.2/ikan/';
+  // String baseUrl = 'http://10.0.2.2/ikan/';
 
   Future<UserModel> getUser({String id}) async {
     var url = '$baseUrl' + 'getUser.php';

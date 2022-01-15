@@ -41,7 +41,8 @@ class _SplashPageState extends State<SplashPage> {
       AuthProvider authProvider =
           Provider.of<AuthProvider>(context, listen: false);
       if (await authProvider.getUser(id: id)) {
-        Navigator.pushNamed(context, '/home');
+        Timer(Duration(seconds: 2),
+            () => Navigator.pushNamed(context, '/home'));
         print(id);
         print("sudah login");
       } else {
