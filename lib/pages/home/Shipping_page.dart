@@ -98,7 +98,7 @@ class _ShippingPageState extends State<ShippingPage> {
             hp_penerima: nohpController.text,
             kg: quantityController.text,
             total: produk.harga.toString())) {
-          Navigator.pushNamed(context, '/detail-pesanan');
+          Navigator.pushNamed(context, '/invoic');
         } else {
           Flushbar(
             duration: Duration(seconds: 4),

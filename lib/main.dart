@@ -1,7 +1,9 @@
 import 'package:apps/pages/detail_chat_page.dart';
+import 'package:apps/pages/detail_pesanan_page.dart';
 import 'package:apps/pages/home/Shipping_page.dart';
 import 'package:apps/pages/home/chart_page.dart';
 import 'package:apps/pages/home/main_page.dart';
+import 'package:apps/pages/home/order_page.dart';
 import 'package:apps/pages/home_admin/chat_admin_page.dart';
 import 'package:apps/pages/home_admin/home_admin_page.dart';
 import 'package:apps/pages/home_admin/list_admin_page.dart';
@@ -10,6 +12,7 @@ import 'package:apps/pages/home_admin/profile_admin_page.dart';
 import 'package:apps/pages/index_page.dart';
 import 'package:apps/pages/invois_page.dart';
 import 'package:apps/pages/pembayaran_page.dart';
+import 'package:apps/pages/pembayaran_skip_page.dart';
 import 'package:apps/pages/sign_in_page.dart';
 import 'package:apps/pages/sign_up_page.dart';
 import 'package:apps/pages/splash_page.dart';
@@ -50,8 +53,11 @@ class MyApp extends StatelessWidget {
           '/caht':(context) =>const ChatPage(),
           '/sipping':(context) =>const ShippingPage(),
           '/detail-chat':(context) =>const DetailChatPage(),
-          '/detail-pesanan':(context) =>const InvoicPage(),
+          '/invoic':(context) =>const InvoicPage(),
           '/pembayaran':(context) =>const PembayaranPage(),
+          '/detail-pesanan':(context) =>const DetailPesananPage(),
+          '/pembayaran-skip':(context) =>const PembayaranSkipPage(),
+          '/order':(context) =>const OrderPage(),
           //admin
           '/home-admin':(context) =>const HomeAdminPage(),
           '/chat-admin':(context) =>const ChatAdminPage(),

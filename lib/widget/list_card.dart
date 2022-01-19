@@ -13,7 +13,35 @@ class ListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _showSimpleDialog(context);
+        lispesanan.gambar != null ?
+        Navigator.pushNamed(
+          context,
+          '/detail-pesanan', arguments: 
+          {'id': lispesanan.id,
+          'penerima':lispesanan.nama_penerima,
+          'hp':lispesanan.hp_penerima,
+          'alamat':lispesanan.alamat_penerima,
+          'tgl_order':lispesanan.tgl_pemesanan,
+          'kg':lispesanan.kg,
+          'total':lispesanan.total,
+          'status':lispesanan.status,
+          'bukti':lispesanan.gambar,
+          'tgl_bukti':lispesanan.tgl_bayar,
+          }
+        ) :
+        Navigator.pushNamed(
+          context,
+          '/pembayaran-skip', arguments: 
+          {'id': lispesanan.id,
+          'penerima':lispesanan.nama_penerima,
+          'hp':lispesanan.hp_penerima,
+          'alamat':lispesanan.alamat_penerima,
+          'tgl_order':lispesanan.tgl_pemesanan,
+          'kg':lispesanan.kg,
+          'total':lispesanan.total,
+          'status':lispesanan.status,
+          }
+        );
       },
       child: Container(
         margin: EdgeInsets.only(top: 20),
@@ -40,14 +68,14 @@ class ListCard extends StatelessWidget {
                     children: [
                       Text(
                         "Penerima :",
-                        style: primaryTextStyle.copyWith(fontWeight: semiBold),
+                        style: blackTextStyle.copyWith(fontWeight: semiBold),
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       Text(
                         lispesanan.nama_penerima,
-                        style: primaryTextStyle.copyWith(fontWeight: semiBold),
+                        style: blackTextStyle.copyWith(fontWeight: semiBold),
                       ),
                     ],
                   ),
@@ -55,14 +83,14 @@ class ListCard extends StatelessWidget {
                     children: [
                       Text(
                         "Tgl Order :",
-                        style: primaryTextStyle.copyWith(fontWeight: semiBold),
+                        style: blackTextStyle.copyWith(fontWeight: semiBold),
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       Text(
                         lispesanan.tgl_pemesanan,
-                        style: primaryTextStyle.copyWith(fontWeight: semiBold),
+                        style: blackTextStyle.copyWith(fontWeight: semiBold),
                       ),
                     ],
                   ),
@@ -70,14 +98,14 @@ class ListCard extends StatelessWidget {
                     children: [
                       Text(
                         "Status Order :",
-                        style: primaryTextStyle.copyWith(fontWeight: semiBold),
+                        style: blackTextStyle.copyWith(fontWeight: semiBold),
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       Text(
                         lispesanan.status,
-                        style: primaryTextStyle.copyWith(fontWeight: semiBold),
+                        style: blackTextStyle.copyWith(fontWeight: semiBold),
                       ),
                     ],
                   ),
@@ -104,86 +132,83 @@ class ListCard extends StatelessWidget {
 
 void _showSimpleDialog(BuildContext context) {
   showDialog(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      "Tambah Pengguna",
-                      style: TextStyle(fontSize: 20.0),
-                    ),
+    context: context,
+    builder: (context) {
+      return SimpleDialog(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Tambah Pengguna",
+                    style: TextStyle(fontSize: 20.0),
                   ),
-                  IconButton(
-                    icon: Icon(Icons.close),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  )
-                ],
+                ),
+                IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ),
+          ),
+          Divider(),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Nama Lengkap",
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            child: TextField(
+              style: new TextStyle(
+                  fontSize: 14.0, height: 1.0, color: Colors.black),
+              decoration: new InputDecoration(
+                hintText: "Input nama lengkap",
+                border: OutlineInputBorder(
+                    borderRadius: new BorderRadius.circular(3.0)),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 14.0, horizontal: 15.0),
               ),
             ),
-            Divider(),
-            Padding(
-              padding: EdgeInsets.all(10.0),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Kontak",
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            child: TextField(
+              style: new TextStyle(
+                  fontSize: 14.0, height: 1.0, color: Colors.black),
+              decoration: new InputDecoration(
+                hintText: "Input kontak",
+                border: OutlineInputBorder(
+                    borderRadius: new BorderRadius.circular(3.0)),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 14.0, horizontal: 15.0),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
+            child: RaisedButton(
+              color: Colors.blue,
               child: Text(
-                "Nama Lengkap",
+                "SIMPAN",
+                style: TextStyle(color: Colors.white),
               ),
+              onPressed: () {},
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-              child: TextField(
-                style: new TextStyle(
-                    fontSize: 14.0, height: 1.0, color: Colors.black),
-                decoration: new InputDecoration(
-                  hintText: "Input nama lengkap",
-                  border: OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(3.0)),
-                  contentPadding: const EdgeInsets.symmetric(
-                      vertical: 14.0, horizontal: 15.0),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "Kontak",
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-              child: TextField(
-                style: new TextStyle(
-                    fontSize: 14.0, height: 1.0, color: Colors.black),
-                decoration: new InputDecoration(
-                  hintText: "Input kontak",
-                  border: OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(3.0)),
-                  contentPadding: const EdgeInsets.symmetric(
-                      vertical: 14.0, horizontal: 15.0),
-                ),
-              ),
-            ),
-            
-            Padding(
-              padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
-              child: RaisedButton(
-                color: Colors.blue,
-                child: Text(
-                  "SIMPAN",
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  
-                },
-              ),
-            )
-          ],
-        );
-      },
-    );
-  }
+          )
+        ],
+      );
+    },
+  );
+}

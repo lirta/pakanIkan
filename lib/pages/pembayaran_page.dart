@@ -65,7 +65,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
       setState(() {
         isLoading = true;
       });
-      if (!(filegambar != null && jumlahController.text.trim() != "")) {
+      if (!(filegambar != null)) {
         //cek file gambar dan name
         Flushbar(
           duration: Duration(seconds: 4),
@@ -93,11 +93,11 @@ class _PembayaranPageState extends State<PembayaranPage> {
         } else {
           print('gagal');
           Flushbar(
-          duration: Duration(seconds: 4),
-          flushbarPosition: FlushbarPosition.TOP,
-          backgroundColor: Color(0xffff5c83),
-          message: 'Pembayaran Gagal',
-        ).show(context);
+            duration: Duration(seconds: 4),
+            flushbarPosition: FlushbarPosition.TOP,
+            backgroundColor: Color(0xffff5c83),
+            message: 'Pembayaran Gagal',
+          ).show(context);
         }
       }
     }
@@ -225,15 +225,51 @@ class _PembayaranPageState extends State<PembayaranPage> {
               borderRadius: BorderRadius.circular(12),
             ),
           ),
-          child: isLoading== false ? Text(
-            'Bayar',
-            style: primaryTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: medium,
+          child: isLoading == false
+              ? Text(
+                  'Bayar',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                )
+              : CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation(backgroundColor6),
+                ),
+        ),
+      );
+    }
+
+    Widget lewati() {
+      return Container(
+        height: 50,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 30),
+        child: TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/order');
+          },
+
+          // handlePesanan,
+          style: TextButton.styleFrom(
+            backgroundColor: primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
-          ) : CircularProgressIndicator( 
-            strokeWidth: 2, valueColor: 
-            AlwaysStoppedAnimation(backgroundColor6),),
+          ),
+          child: isLoading == false
+              ? Text(
+                  'Lewati',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                )
+              : CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation(backgroundColor6),
+                ),
         ),
       );
     }
@@ -283,10 +319,11 @@ class _PembayaranPageState extends State<PembayaranPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 header(),
-                jmlPembayaran(),
+                // jmlPembayaran(),
                 content(),
                 Update(),
                 button(),
+                lewati()
                 // resizeToAvoidBottomInset: false,
               ],
             ),
