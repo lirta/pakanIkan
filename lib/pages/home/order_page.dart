@@ -1,9 +1,12 @@
+import 'package:apps/pages/list_pesanan.dart';
+import 'package:apps/provider/list_pemesanan_provider.dart';
 import 'package:apps/provider/produk_provider.dart';
 import 'package:apps/theme.dart';
 import 'package:apps/widget/list_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({Key key}) : super(key: key);
@@ -13,13 +16,35 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
-  Future<void> initState() async {
-    await Provider.of<ProdukProvider>(context, listen: false).getProduk();
+  String id;
+  Future<void> initState() {
+    // await Provider.of<ProdukProvider>(context, listen: false).getProduk();
+    super.initState();
+    getpesanan();
+    _refreshPesanan(context);
+  }
+
+  getpesanan() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    id = prefs.getString("id");
+    print(id);
+    await Provider.of<ListPesananProvider>(context, listen: false)
+        .getPesanan(id_konsumen: id);
+  }
+
+  Future<void> _refreshPesanan(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    id = prefs.getString("id");
+    print(id);
+    await Provider.of<ListPesananProvider>(context, listen: false)
+        .getPesanan(id_konsumen: id);
   }
 
   @override
   Widget build(BuildContext context) {
-    ProdukProvider produkProvider = Provider.of<ProdukProvider>(context);
+    // ProdukProvider produkProvider = Provider.of<ProdukProvider>(context);
+    ListPesananProvider listPesananProvider =
+        Provider.of<ListPesananProvider>(context);
     @override
     Widget header() {
       return AppBar(
@@ -89,30 +114,76 @@ class _OrderPageState extends State<OrderPage> {
       ));
     }
 
+    print(
+        "ini panjang data" + listPesananProvider.listpesanan.length.toString());
+
     Widget content() {
       return Expanded(
         child: Container(
           color: backgroundColor3,
           child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              const ListCard(),
-              const ListCard(),
-              ListCard(),
-              ListCard(),
-            ],
+              padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+              // ignore: prefer_const_literals_to_create_immutables, prefer_is_empty
+              children: listPesananProvider.listpesanan
+                  .map(
+                    (listpesanan) => ListCard(listpesanan),
+                  )
+                  .toList()
+              // ignore: avoid_print
+
+              //  [
+              //   ListCard(),
+              //   ListCard(),
+              //   ListCard(),
+              //   ListCard(),
+              // ],
+              ),
+        ),
+      );
+    }
+
+    Widget newArrivalsTitle() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: defaultMargin,
+          left: defaultMargin,
+          right: defaultMargin,
+        ),
+        child: Text(
+          'List Member',
+          style: priceTextStyle.copyWith(
+            fontSize: 22,
+            fontWeight: semiBold,
           ),
         ),
       );
     }
 
-    return Column(
-      children: [
-        header(),
-        emptyList(),
-        // content(),
-      ],
+    Widget newArrivals() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 14,
+        ),
+        child: Column(
+          children: listPesananProvider.listpesanan
+              .map(
+                (listpesanan) => ListPesanan(listpesanan),
+              )
+              .toList(),
+        ),
+      );
+    }
+
+    return RefreshIndicator(
+      onRefresh: () => _refreshPesanan(context),
+      child: Column(
+        children: [
+          header(),
+          listPesananProvider.listpesanan == null ? emptyList() : content()
+          // emptyList(),
+          // content(),
+        ],
+      ),
     );
   }
 }

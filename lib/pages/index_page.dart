@@ -1,98 +1,40 @@
-import 'package:apps/model/user_model.dart';
-import 'package:apps/provider/auth_provider.dart';
 import 'package:apps/theme.dart';
-import 'package:apps/widget/custom_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+class IndexPage extends StatefulWidget {
+  const IndexPage({Key key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  _IndexPageState createState() => _IndexPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int selectedIndex = 0;
-  // String id;
-  // bool isLogin = false;
-  // void initState(){
-  //   cekLogin();
-  // }
-  // cekLogin() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   var isLogin = prefs.getBool("is_login");
-  //   id = prefs.getString("id");
-
-  //   if (isLogin == true) {
-  //     AuthProvider authProvider =
-  //         Provider.of<AuthProvider>(context, listen: false);
-  //     if (await authProvider.getUser(id: id)) {
-  //       setState(() {
-  //         isLogin = true;
-  //       });
-  //       print(id);
-  //       print("sudah login");
-  //     } else {
-  //       print("error get data");
-  //       Navigator.pushNamed(context, '/sign-in');
-  //       print(isLogin);
-  //       print(id);
-  //     }
-  //   } else {
-  //     print("belumlogin");
-  //     Navigator.pushNamed(context, '/home');
-  //   }
-  // }
+class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    UserModel user = authProvider.user;
-
-    Widget headerLogin() {
+    Widget header() {
       return Container(
-        
-        margin: EdgeInsets.only(
-            top: defaultMargin, right: defaultMargin, left: defaultMargin),
+        margin: EdgeInsets.only(top: defaultMargin, left: defaultMargin),
         child: Row(
           children: [
+            Container(
+              width: 64,
+              height: 64,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: AssetImage('assets/logo.png'))),
+            ),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hallo,',
-                          style: primaryTextStyle.copyWith(
-                              fontSize: 20, fontWeight: semiBold),
-                        ),
-                        Text(
-                          user.nama,
-                          style: primaryTextStyle.copyWith(
-                              fontSize: 20, fontWeight: semiBold),
-                              maxLines: 2,
-                        ),
-                      ],
-                    ),
+                  Text(
+                    'Kelompok Tani \n Sumber Rezeki',
+                    style: primaryTextStyle.copyWith(
+                        fontSize: 30, fontWeight: semiBold),
                   ),
-                  // Text(user.email,
-                  //   style: subtitleTextStyle.copyWith(fontSize: 16),
-                  // )
                 ],
               ),
             ),
-            Container(
-              width: 54,
-              height: 54,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage('assets/image_profile.png'))),
-            )
           ],
         ),
       );
@@ -106,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(24),
             ),
-            color: backgroundColor1),
+            color: backgroundColor4),
         child: Column(
           children: [
             Container(
@@ -184,7 +126,6 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'Misi',
                     style: primaryTextStyle.copyWith(
-                      fontSize: 24,
                       fontWeight: medium,
                     ),
                   ),
@@ -193,8 +134,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Text(
                     'Pelayanan yang maksimal serta dan menjaga kualitas demi kepuasn pelanggan',
-                    style: secondaryTextStyle.copyWith(
-                      fontSize: 20,
+                    style: subtitleTextStyle.copyWith(
                       fontWeight: light,
                     ),
                     textAlign: TextAlign.justify,
@@ -205,23 +145,79 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-           
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.all(defaultMargin),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 54,
+                      child: TextButton(
+                        onPressed: () {Navigator.pushNamed(context, '/sign-in');},
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          backgroundColor: primaryColor,
+                        ),
+                        child: Text(
+                          'Sign In',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: semiBold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 54,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/sign-up');
+                        },
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          backgroundColor: primaryColor,
+                        ),
+                        child: Text(
+                          'Sign Up',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: semiBold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       );
     }
 
-    
-
-    
-
-    return ListView(
-      
-      children: [
-        headerLogin(),
-        content()
-        
-      ],
+    return Scaffold(
+      backgroundColor: backgroundColor1,
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            // margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            child: Column(
+              children: [header(), content()],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -43,7 +43,7 @@ class ProfilePage extends StatelessWidget {
                     prefs.remove("id");
                     prefs.setBool("is_login", false);
                     Navigator.pushNamedAndRemoveUntil(
-                        context, '/sign-in', (route) => false);
+                        context, '/index', (route) => false);
                   },
                     child: Icon(
                       FontAwesomeIcons.signOutAlt,

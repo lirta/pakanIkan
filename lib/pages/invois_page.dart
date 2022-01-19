@@ -12,6 +12,7 @@ class InvoicPage extends StatefulWidget {
 }
 
 class _InvoicPageState extends State<InvoicPage> {
+  
   @override
   Widget build(BuildContext context) {
     PesananProvider pesananProvider = Provider.of<PesananProvider>(context);
@@ -158,10 +159,11 @@ class _InvoicPageState extends State<InvoicPage> {
                         fontSize: 12,
                         // fontWeight: medium
                       ),
+                      
                     ),
                     Text(pesanan.alamat_penerima,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
-                      maxLines: 3,
+                      maxLines: 2,
                     ),
                   ],
                 ),

@@ -18,6 +18,7 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   String id;
+  String rules;
   String id_produk = "1";
   @override
   void initState() {
@@ -33,6 +34,7 @@ class _SplashPageState extends State<SplashPage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
     var isLogin = prefs.getBool("is_login");
     id = prefs.getString("id");
+    rules = prefs.getString("rules");
     // print(id);
     // print(isLogin);
 
@@ -41,24 +43,33 @@ class _SplashPageState extends State<SplashPage> {
       AuthProvider authProvider =
           Provider.of<AuthProvider>(context, listen: false);
       if (await authProvider.getUser(id: id)) {
+        if (rules == "konsumen") {
         Timer(Duration(seconds: 2),
             () => Navigator.pushNamed(context, '/home'));
-        print(id);
+        print(rules);
+          
+        }else if(rules == "admin"){
+          Timer(Duration(seconds: 2),
+            () => Navigator.pushNamed(context, '/home-admin'));
+        print(rules);
+        }
         print("sudah login");
       } else {
         print("error get data");
         Timer(Duration(seconds: 2),
-            () => Navigator.pushNamed(context, '/sign-in'));
+            () => Navigator.pushNamed(context, '/index'));
         print(isLogin);
         print(id);
       }
     } else {
       print("belumlogin");
       Timer(
-          Duration(seconds: 2), () => Navigator.pushNamed(context, '/sign-in'));
+          Duration(seconds: 2), () => Navigator.pushNamed(context, '/index'));
     }
     } else {
       print('gagal get data produk');
+      Timer(Duration(seconds: 2),
+            () => Navigator.pushNamed(context, '/index'));
     }
   }
 
@@ -73,12 +84,13 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: backgroundColor1,
       body: Center(
         child: Container(
-          width: 130,
-          height: 150,
+          margin: EdgeInsets.all(defaultMargin),
+          // width: 130,
+          // height: 150,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                'assets/image_splash.png',
+                'assets/logo.png',
               ),
             ),
           ),

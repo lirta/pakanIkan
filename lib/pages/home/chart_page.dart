@@ -1,11 +1,51 @@
+import 'package:apps/provider/auth_provider.dart';
 import 'package:apps/provider/page_provider.dart';
 import 'package:apps/theme.dart';
 import 'package:apps/widget/chat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   const ChatPage({Key key}) : super(key: key);
+
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  String id;
+  bool isLogin = false;
+  @override
+  void initState() {
+    cekLogin();
+  }
+
+  cekLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var isLogin = prefs.getBool("is_login");
+    id = prefs.getString("id");
+
+    if (isLogin == true) {
+      AuthProvider authProvider =
+          Provider.of<AuthProvider>(context, listen: false);
+      if (await authProvider.getUser(id: id)) {
+        setState(() {
+          isLogin = true;
+        });
+        print(id);
+        print("sudah login");
+      } else {
+        print("error get data");
+        Navigator.pushNamed(context, '/sign-in');
+        print(isLogin);
+        print(id);
+      }
+    } else {
+      print("belumlogin");
+      Navigator.pushNamed(context, '/home');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +190,7 @@ class ChatPage extends StatelessWidget {
 
     Widget content() {
       return Expanded(
-        child: Container(
+          child: Container(
         width: double.infinity,
         color: backgroundColor3,
         child: ListView(

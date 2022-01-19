@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:apps/model/pesanan_model.dart';
 import 'package:apps/service/server.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PesananServices {
   // String baseUrl = 'http://10.0.2.2/ikan/';
@@ -26,7 +27,10 @@ class PesananServices {
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['pesanan'];
       PesananModel pesanan = PesananModel.fromJson(data);
-    // print(pesanan);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setBool("is_login", true);
+      prefs.setString("id_pesanan", pesanan.id);
+      print(pesanan.id);
       return pesanan;
     }
   }

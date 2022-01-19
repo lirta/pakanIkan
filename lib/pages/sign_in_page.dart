@@ -211,13 +211,13 @@ class _SignInPageState extends State<SignInPage> {
               borderRadius: BorderRadius.circular(12),
             ),
           ),
-          child: Text(
+          child: isLoading== false ? Text(
             'Sign In',
             style: primaryTextStyle.copyWith(
               fontSize: 16,
               fontWeight: medium,
             ),
-          ),
+          ) : CircularProgressIndicator( strokeWidth: 2, valueColor: AlwaysStoppedAnimation(backgroundColor6),),
         ),
       );
     }

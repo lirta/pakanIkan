@@ -75,6 +75,7 @@ class AuthServices {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool("is_login", true);
       prefs.setString("id", user.id);
+      prefs.setString("rules", user.rules);
       print(user.id);
 
       return user;
