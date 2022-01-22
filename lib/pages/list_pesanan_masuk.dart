@@ -5,9 +5,9 @@ import 'package:apps/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ListPesanan extends StatelessWidget {
+class ListPesananMasuk extends StatelessWidget {
   ListPesananModel listpesananMasuk;
-  ListPesanan(this.listpesananMasuk);
+  ListPesananMasuk(this.listpesananMasuk);
 
   @override
   Widget build(BuildContext context) {

@@ -5,15 +5,15 @@ import 'package:apps/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ListPesanan extends StatelessWidget {
-  ListPesananModel listpesananMasuk;
-  ListPesanan(this.listpesananMasuk);
+class ListPesananDikemas extends StatelessWidget {
+  ListPesananModel listpesananDikemas;
+  ListPesananDikemas(this.listpesananDikemas);
 
   @override
   Widget build(BuildContext context) {
     PesananProvider pesananProvider = Provider.of<PesananProvider>(context);
     detailPesanan() async {
-      if (await pesananProvider.getPesanan(id: listpesananMasuk.id)) {
+      if (await pesananProvider.getPesanan(id: listpesananDikemas.id)) {
         print("berhasil");
         Navigator.pushNamed(context, '/admin-detail-pesanan');
       } else {
@@ -45,7 +45,7 @@ class ListPesanan extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    listpesananMasuk.nama_penerima,
+                    listpesananDikemas.nama_penerima,
                     // 'lirta',
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
@@ -56,7 +56,7 @@ class ListPesanan extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    listpesananMasuk.hp_penerima,
+                    listpesananDikemas.hp_penerima,
                     // 'lirta',
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
@@ -68,7 +68,7 @@ class ListPesanan extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    listpesananMasuk.tgl_pemesanan,
+                    listpesananDikemas.tgl_pemesanan,
                     // 'Lierta',
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
@@ -78,7 +78,7 @@ class ListPesanan extends StatelessWidget {
                   SizedBox(
                     height: 3,
                   ),
-                  listpesananMasuk.gambar == null ?
+                  listpesananDikemas.gambar == null ?
                   Text("Pembayaran Tertunda",
                     // 'Lierta',
                     style: blackTextStyle.copyWith(

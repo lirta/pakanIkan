@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-class SingUpPage extends StatefulWidget {
-  const SingUpPage({ Key key }) : super(key: key);
+class AddAdminPage extends StatefulWidget {
+  const AddAdminPage({ Key key }) : super(key: key);
 
   @override
-  _SingUpPageState createState() => _SingUpPageState();
+  _AddAdminPageState createState() => _AddAdminPageState();
 }
 
-class _SingUpPageState extends State<SingUpPage> {
+class _AddAdminPageState extends State<AddAdminPage> {
   TextEditingController nameController = TextEditingController(text: '');
 
   TextEditingController hpController = TextEditingController(text: '');
@@ -23,7 +23,6 @@ class _SingUpPageState extends State<SingUpPage> {
   TextEditingController passwordController = TextEditingController(text: '');
 
   bool isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -62,13 +61,19 @@ class _SingUpPageState extends State<SingUpPage> {
         ).show(context);
       } else {
         //prosess register
-        if (await authProvider.register(
+        if (await authProvider.addadmin(
             nama: nameController.text,
             hp: hpController.text,
             alamat: alamatController.text,
             email: emailController.text,
             password: passwordController.text)) {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/home-admin');
+          // Flushbar(
+          //   duration: Duration(seconds: 4),
+          //   flushbarPosition: FlushbarPosition.TOP,
+          //   backgroundColor: Color(0xffff5c83),
+          //   message: 'Email sudah di gunakan',
+          // ).show(context);
         } else {
           Flushbar(
             duration: Duration(seconds: 4),
@@ -91,9 +96,9 @@ class _SingUpPageState extends State<SingUpPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Register',
+              'Tambahkan Admin Baru',
               style: primaryTextStyle.copyWith(
-                fontSize: 24,
+                fontSize: 30,
                 fontWeight: semiBold,
               ),
             ),
@@ -101,8 +106,10 @@ class _SingUpPageState extends State<SingUpPage> {
               height: 2,
             ),
             Text(
-              'Isi form register dengan benar',
-              style: subtitleTextStyle,
+              'Isi form dengan benar',
+              style: subtitleTextStyle.copyWith(
+                fontSize: 18
+              )
             ),
           ],
         ),
@@ -384,7 +391,7 @@ class _SingUpPageState extends State<SingUpPage> {
             ),
           ),
           child: Text(
-            'Register',
+            'Tambahkan Admin',
             style: primaryTextStyle.copyWith(
               fontSize: 16,
               fontWeight: medium,
@@ -444,7 +451,7 @@ class _SingUpPageState extends State<SingUpPage> {
                 // isLoading ? LoadingButton() :
                  signUpButton(),
                 // Spacer(),
-                footer(),
+                // footer(),
               ],
             ),
           ),
@@ -452,4 +459,4 @@ class _SingUpPageState extends State<SingUpPage> {
       ),
     );
   }
-}
+  }

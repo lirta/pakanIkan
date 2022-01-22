@@ -5,22 +5,22 @@ import 'package:apps/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ListPesanan extends StatelessWidget {
-  ListPesananModel listpesananMasuk;
-  ListPesanan(this.listpesananMasuk);
+class ListPesananDikirim extends StatelessWidget {
+  ListPesananModel listpesananDikirim;
+  ListPesananDikirim(this.listpesananDikirim);
 
   @override
   Widget build(BuildContext context) {
     PesananProvider pesananProvider = Provider.of<PesananProvider>(context);
     detailPesanan() async {
-      if (await pesananProvider.getPesanan(id: listpesananMasuk.id)) {
+      if (await pesananProvider.getPesanan(id: listpesananDikirim.id)) {
         print("berhasil");
         Navigator.pushNamed(context, '/admin-detail-pesanan');
       } else {
         print("gagal");
       }
     }
-
+  
     return GestureDetector(
       onTap: detailPesanan,
       child: Container(
@@ -45,7 +45,7 @@ class ListPesanan extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    listpesananMasuk.nama_penerima,
+                    listpesananDikirim.nama_penerima,
                     // 'lirta',
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
@@ -56,7 +56,7 @@ class ListPesanan extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    listpesananMasuk.hp_penerima,
+                    listpesananDikirim.hp_penerima,
                     // 'lirta',
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
@@ -68,7 +68,7 @@ class ListPesanan extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    listpesananMasuk.tgl_pemesanan,
+                    listpesananDikirim.tgl_pemesanan,
                     // 'Lierta',
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
@@ -78,7 +78,7 @@ class ListPesanan extends StatelessWidget {
                   SizedBox(
                     height: 3,
                   ),
-                  listpesananMasuk.gambar == null ?
+                  listpesananDikirim.gambar == null ?
                   Text("Pembayaran Tertunda",
                     // 'Lierta',
                     style: blackTextStyle.copyWith(

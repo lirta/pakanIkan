@@ -29,6 +29,34 @@ class AuthServices {
     }
   }
 
+  Future<UserModel> addAdmin(
+      {String nama,
+      String hp,
+      String alamat,
+      String email,
+      String password}) async {
+    var url = '$baseUrl' + 'addAdmin.php';
+    var response = await http.post(
+      Uri.parse(url),
+      body: {
+        'nama': nama,
+        'hp': hp,
+        'alamat': alamat,
+        'email': email,
+        'password': password
+      },
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      print(response.body);
+      var data = jsonDecode(response.body)['user'];
+      UserModel admin = UserModel.fromJson(data);
+
+      // print(user.id);
+
+      return admin;
+    }
+  }
   Future<UserModel> posregister(
       {String nama,
       String hp,

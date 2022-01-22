@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:apps/provider/auth_provider.dart';
+import 'package:apps/provider/list_pemesanan_provider.dart';
 import 'package:apps/provider/produk_provider.dart';
 import 'package:apps/theme.dart';
 import 'package:flutter/material.dart';
@@ -43,12 +44,14 @@ class _SplashPageState extends State<SplashPage> {
       AuthProvider authProvider =
           Provider.of<AuthProvider>(context, listen: false);
       if (await authProvider.getUser(id: id)) {
-        if (rules == "konsumen") {
+        if (rules == "1") {
         Timer(Duration(seconds: 2),
             () => Navigator.pushNamed(context, '/home'));
         print(rules);
           
-        }else if(rules == "admin"){
+        }else{
+          Provider.of<ListPesananProvider>(context, listen: false)
+        .getPesananAdmin();
           Timer(Duration(seconds: 2),
             () => Navigator.pushNamed(context, '/home-admin'));
         print(rules);

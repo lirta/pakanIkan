@@ -15,44 +15,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
-  // String id;
-  // bool isLogin = false;
-  // void initState(){
-  //   cekLogin();
-  // }
-  // cekLogin() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   var isLogin = prefs.getBool("is_login");
-  //   id = prefs.getString("id");
+  String rules;
+  void initState() {
+    cekUser();
+  }
 
-  //   if (isLogin == true) {
-  //     AuthProvider authProvider =
-  //         Provider.of<AuthProvider>(context, listen: false);
-  //     if (await authProvider.getUser(id: id)) {
-  //       setState(() {
-  //         isLogin = true;
-  //       });
-  //       print(id);
-  //       print("sudah login");
-  //     } else {
-  //       print("error get data");
-  //       Navigator.pushNamed(context, '/sign-in');
-  //       print(isLogin);
-  //       print(id);
-  //     }
-  //   } else {
-  //     print("belumlogin");
-  //     Navigator.pushNamed(context, '/home');
-  //   }
-  // }
+  cekUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    rules = prefs.getString("rules");
+    if ( rules == "2") {
+      Navigator.pushNamed(context, '/home-admin');
+    }
+  }
+ 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
 
-    Widget headerLogin() {
+    Widget header() {
       return Container(
-        
         margin: EdgeInsets.only(
             top: defaultMargin, right: defaultMargin, left: defaultMargin),
         child: Row(
@@ -63,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                     child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Hallo,',
@@ -74,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                           user.nama,
                           style: primaryTextStyle.copyWith(
                               fontSize: 20, fontWeight: semiBold),
-                              maxLines: 2,
+                          maxLines: 2,
                         ),
                       ],
                     ),
@@ -205,23 +187,13 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-           
           ],
         ),
       );
     }
 
-    
-
-    
-
     return ListView(
-      
-      children: [
-        headerLogin(),
-        content()
-        
-      ],
+      children: [header(), content()],
     );
   }
 }

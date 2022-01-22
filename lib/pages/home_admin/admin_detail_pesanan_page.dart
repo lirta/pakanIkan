@@ -1,23 +1,22 @@
 import 'package:apps/model/pesanan_model.dart';
 import 'package:apps/provider/pesanan_provider.dart';
+import 'package:apps/service/server.dart';
 import 'package:apps/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class InvoicPage extends StatefulWidget {
-  const InvoicPage({Key key}) : super(key: key);
+class AdminDetailPesananPage extends StatefulWidget {
+  const AdminDetailPesananPage({Key key}) : super(key: key);
 
   @override
-  _InvoicPageState createState() => _InvoicPageState();
+  _AdminDetailPesananPageState createState() => _AdminDetailPesananPageState();
 }
 
-class _InvoicPageState extends State<InvoicPage> {
-  
+class _AdminDetailPesananPageState extends State<AdminDetailPesananPage> {
   @override
   Widget build(BuildContext context) {
     PesananProvider pesananProvider = Provider.of<PesananProvider>(context);
     PesananModel pesanan = pesananProvider.pesanan;
-
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -43,85 +42,7 @@ class _InvoicPageState extends State<InvoicPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Metode Pembayaran",
-                  style: priceTextStyle.copyWith(fontWeight: semiBold),
-                ),
-                Divider(
-                  thickness: 1,
-                  color: Color(0Xff2e3141),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  'Nama Bank',
-                  style: primaryTextStyle.copyWith(fontWeight: medium),
-                  maxLines: 3,
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  "BRI",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 12,
-                    // fontWeight: medium
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  'Atas Nama',
-                  style: primaryTextStyle.copyWith(fontWeight: medium),
-                  maxLines: 3,
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  "Bapak Budi",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 12,
-                    // fontWeight: medium
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  'No Reg.',
-                  style: primaryTextStyle.copyWith(fontWeight: medium),
-                  maxLines: 3,
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  "1079-0100-9040-5-36",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 12,
-                    // fontWeight: medium
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 12,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: defaultMargin),
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: backgroundColor4,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Invoice",
+                  pesanan.id_konsumen,
                   style: priceTextStyle.copyWith(fontWeight: semiBold),
                 ),
                 Divider(
@@ -141,7 +62,8 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.nama_penerima,
+                    Text(
+                      pesanan.nama_penerima,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                       maxLines: 3,
                     ),
@@ -159,9 +81,9 @@ class _InvoicPageState extends State<InvoicPage> {
                         fontSize: 12,
                         // fontWeight: medium
                       ),
-                      
                     ),
-                    Text(pesanan.alamat_penerima,
+                    Text(
+                      pesanan.alamat_penerima,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                       maxLines: 2,
                     ),
@@ -180,7 +102,8 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.hp_penerima,
+                    Text(
+                      pesanan.hp_penerima,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -198,7 +121,8 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.tgl_pemesanan,
+                    Text(
+                      pesanan.tgl_pemesanan,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -216,25 +140,8 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.kg,
-                      style: primaryTextStyle.copyWith(fontWeight: medium),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
                     Text(
-                      "Status",
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 12,
-                        // fontWeight: medium
-                      ),
-                    ),
-                    Text(pesanan.status,
+                      pesanan.kg,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -242,6 +149,25 @@ class _InvoicPageState extends State<InvoicPage> {
                 SizedBox(
                   height: 12,
                 ),
+                pesanan.tgl_bayar != ""
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Status",
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 12,
+                              // fontWeight: medium
+                            ),
+                          ),
+                          Text(
+                            pesanan.status,
+                            style:
+                                primaryTextStyle.copyWith(fontWeight: medium),
+                          ),
+                        ],
+                      )
+                    : Container(),
                 Divider(
                   thickness: 1,
                   color: Color(0Xff2e3141),
@@ -255,7 +181,8 @@ class _InvoicPageState extends State<InvoicPage> {
                           // fontSize: 12,
                           fontWeight: semiBold),
                     ),
-                    Text(pesanan.total,
+                    Text(
+                      pesanan.total,
                       style: priceTextStyle.copyWith(fontWeight: semiBold),
                     ),
                   ],
@@ -266,16 +193,56 @@ class _InvoicPageState extends State<InvoicPage> {
               ],
             ),
           ),
-          SizedBox(
-            height: 12,
-          ),
+          pesanan.gambar != null
+              ? Container(
+                  margin: EdgeInsets.only(top: defaultMargin),
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: backgroundColor4,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Bukti Pembayaran",
+                        style: priceTextStyle.copyWith(
+                            fontWeight: semiBold, fontSize: 20),
+                      ),
+                      Divider(
+                        thickness: 1,
+                        color: Color(0Xff2e3141),
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Container(
+                          height: MediaQuery.of(context).size.width * 0.9,
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          // margin: EdgeInsets.only(
+                          //   top: defaultMargin,
+                          // ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: NetworkImage(UrlGambar + pesanan.gambar),
+                            )),
+                          )),
+                    ],
+                  ),
+                )
+              : Container(),
           Container(
             height: 50,
             width: double.infinity,
             margin: EdgeInsets.only(top: 30),
             child: TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/pembayaran');
+              onPressed: () async {
+                if (await pesananProvider.postStatus(id: pesanan.id, status: pesanan.status)) {
+                  print("berhasil ubah status");
+                } else {}
+                // Navigator.pushNamed(context, '/pembayaran');
               },
               // handlePesanan,
               style: TextButton.styleFrom(
@@ -285,7 +252,7 @@ class _InvoicPageState extends State<InvoicPage> {
                 ),
               ),
               child: Text(
-                'Bayar Sekarang',
+                'Konfirmasi Orderan',
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
@@ -293,34 +260,6 @@ class _InvoicPageState extends State<InvoicPage> {
               ),
             ),
           ),
-          SizedBox(
-            height: 12,
-          ),
-           Container(
-        height: 50,
-        width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
-        child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
-
-          // handlePesanan,
-          style: TextButton.styleFrom(
-            backgroundColor: primaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-          child: Text(
-                  'Lewati',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium,
-                  ),
-                )
-        ),
-      ),
           SizedBox(
             height: 12,
           ),

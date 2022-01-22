@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class PesananProvider with ChangeNotifier {
   PesananModel _pesanan;
+  PesananModel _pesananMasuk;
 
   PesananModel get pesanan => _pesanan;
 
@@ -37,6 +38,16 @@ class PesananProvider with ChangeNotifier {
       {String id}) async {
     try {
       PesananModel pesanan = await PesananServices().getPesanan(id:id);
+      _pesanan = pesanan;
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  Future<bool> postStatus(
+      {String id, String status}) async {
+    try {
+      PesananModel pesanan = await PesananServices().postStatus(id:id, status:status);
       _pesanan = pesanan;
       return true;
     } catch (e) {

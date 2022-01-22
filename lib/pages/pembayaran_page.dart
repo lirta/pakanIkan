@@ -241,38 +241,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
       );
     }
 
-    Widget lewati() {
-      return Container(
-        height: 50,
-        width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
-        child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/order');
-          },
-
-          // handlePesanan,
-          style: TextButton.styleFrom(
-            backgroundColor: primaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-          child: isLoading == false
-              ? Text(
-                  'Lewati',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium,
-                  ),
-                )
-              : CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation(backgroundColor6),
-                ),
-        ),
-      );
-    }
+    
 
     Widget content() {
       return Container(
@@ -323,7 +292,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                 content(),
                 Update(),
                 button(),
-                lewati()
+                // lewati()
                 // resizeToAvoidBottomInset: false,
               ],
             ),

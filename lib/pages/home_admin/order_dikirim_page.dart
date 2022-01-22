@@ -1,23 +1,26 @@
 import 'package:apps/model/user_model.dart';
 import 'package:apps/pages/list_pesanan.dart';
-import 'package:apps/pages/list_pesanan_masuk.dart';
+import 'package:apps/pages/list_pesanan_dikirim.dart';
 import 'package:apps/provider/auth_provider.dart';
 import 'package:apps/provider/list_pemesanan_provider.dart';
-import 'package:apps/theme.dart';
-import 'package:apps/widget/list_card.dart';
-import 'package:apps/widget/pesanan_title.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeAdminPage extends StatefulWidget {
-  const HomeAdminPage({Key key}) : super(key: key);
+import '../../theme.dart';
+
+class OrderDikirimPage extends StatefulWidget {
+  const OrderDikirimPage({ Key key }) : super(key: key);
 
   @override
-  _HomeAdminPageState createState() => _HomeAdminPageState();
+  _OrderDikirimPageState createState() => _OrderDikirimPageState();
+
+
 }
 
-class _HomeAdminPageState extends State<HomeAdminPage> {
+
+
+
+class _OrderDikirimPageState extends State<OrderDikirimPage> {
   int selectedIndex = 0;
   String rules;
   String id;
@@ -36,14 +39,13 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
   }
   getpesanan() async {
     await Provider.of<ListPesananProvider>(context, listen: false)
-        .getPesananAdmin();
+        .getPesananDikirim();
   }
 
   Future<void> _refreshPesanan(BuildContext context) async {
     await Provider.of<ListPesananProvider>(context, listen: false)
-        .getPesananAdmin();
+        .getPesananDikirim();
   }
-
   @override
   Widget build(BuildContext context) {
     ListPesananProvider listPesananProvider =
@@ -107,7 +109,7 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
           right: defaultMargin,
         ),
         child: Text(
-          'List Order Masuk',
+          'List Order Terkirim',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             fontWeight: semiBold,
@@ -122,9 +124,9 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
             color: backgroundColor3,
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            children: listPesananProvider.listpesananMasuk
+            children: listPesananProvider.listpesananDikirim
                 .map(
-                  (listpesananMasuk) => ListPesananMasuk(listpesananMasuk),
+                  (listpesananDikirim) => ListPesananDikirim(listpesananDikirim),
                 )
                 .toList(),
           ),

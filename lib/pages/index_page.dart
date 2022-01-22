@@ -126,6 +126,7 @@ class _IndexPageState extends State<IndexPage> {
                   Text(
                     'Misi',
                     style: primaryTextStyle.copyWith(
+                      fontSize: 24,
                       fontWeight: medium,
                     ),
                   ),
@@ -134,7 +135,8 @@ class _IndexPageState extends State<IndexPage> {
                   ),
                   Text(
                     'Pelayanan yang maksimal serta dan menjaga kualitas demi kepuasn pelanggan',
-                    style: subtitleTextStyle.copyWith(
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 20,
                       fontWeight: light,
                     ),
                     textAlign: TextAlign.justify,

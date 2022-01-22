@@ -1,18 +1,37 @@
 import 'package:apps/pages/home/profile_main.dart';
 import 'package:apps/pages/home/order_page.dart';
+import 'package:apps/pages/home_admin/home_admin_page.dart';
 
 import 'package:apps/provider/page_provider.dart';
 import 'package:apps/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'chart_page.dart';
 import 'home_page.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
 
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  String rules;
+  void initState() {
+    cekUser();
+  }
+
+  cekUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    rules = prefs.getString("rules");
+    if ( rules == "2") {
+      Navigator.pushNamed(context, '/home-admin');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);

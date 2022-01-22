@@ -4,10 +4,16 @@ import 'package:flutter/cupertino.dart';
 
 class AuthProvider with ChangeNotifier {
    UserModel _user;
+   UserModel _admin;
 
   UserModel get user => _user;
+  UserModel get admin => _admin;
 
   set user(UserModel user) {
+    _user = user;
+    notifyListeners();
+  }
+  set admin(UserModel admin) {
     _user = user;
     notifyListeners();
   }
@@ -15,7 +21,7 @@ class AuthProvider with ChangeNotifier {
   Future<bool> getUser({ String id}) async {
     try {
       UserModel user = await AuthServices().getUser(id:id);
-      _user = user;
+      // _user = user;
       return true;
     } catch (e) {
       return false;
@@ -31,6 +37,21 @@ class AuthProvider with ChangeNotifier {
       UserModel user = await AuthServices().posregister(
           nama: nama, hp: hp, alamat: alamat, email: email, password: password);
       _user = user;
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  Future<bool> addadmin(
+      { String nama,
+       String hp,
+       String alamat,
+       String email,
+       String password}) async {
+    try {
+      UserModel admin = await AuthServices().addAdmin(
+          nama: nama, hp: hp, alamat: alamat, email: email, password: password);
+      _admin = admin;
       return true;
     } catch (e) {
       return false;

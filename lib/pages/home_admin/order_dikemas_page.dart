@@ -1,23 +1,21 @@
 import 'package:apps/model/user_model.dart';
-import 'package:apps/pages/list_pesanan.dart';
-import 'package:apps/pages/list_pesanan_masuk.dart';
+import 'package:apps/pages/list_pesanan_dikemas.dart';
 import 'package:apps/provider/auth_provider.dart';
 import 'package:apps/provider/list_pemesanan_provider.dart';
 import 'package:apps/theme.dart';
-import 'package:apps/widget/list_card.dart';
-import 'package:apps/widget/pesanan_title.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeAdminPage extends StatefulWidget {
-  const HomeAdminPage({Key key}) : super(key: key);
+import '../list_pesanan.dart';
+
+class OrderDikemasPage extends StatefulWidget {
+  const OrderDikemasPage({ Key key }) : super(key: key);
 
   @override
-  _HomeAdminPageState createState() => _HomeAdminPageState();
+  _OrderDikemasPageState createState() => _OrderDikemasPageState();
 }
 
-class _HomeAdminPageState extends State<HomeAdminPage> {
+class _OrderDikemasPageState extends State<OrderDikemasPage> {
   int selectedIndex = 0;
   String rules;
   String id;
@@ -36,14 +34,13 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
   }
   getpesanan() async {
     await Provider.of<ListPesananProvider>(context, listen: false)
-        .getPesananAdmin();
+        .getPesananDikemas();
   }
 
   Future<void> _refreshPesanan(BuildContext context) async {
     await Provider.of<ListPesananProvider>(context, listen: false)
-        .getPesananAdmin();
+        .getPesananDikemas();
   }
-
   @override
   Widget build(BuildContext context) {
     ListPesananProvider listPesananProvider =
@@ -107,7 +104,7 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
           right: defaultMargin,
         ),
         child: Text(
-          'List Order Masuk',
+          'List Order Sedang Dikemas',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             fontWeight: semiBold,
@@ -122,9 +119,9 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
             color: backgroundColor3,
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            children: listPesananProvider.listpesananMasuk
+            children: listPesananProvider.listpesananDikemas
                 .map(
-                  (listpesananMasuk) => ListPesananMasuk(listpesananMasuk),
+                  (listpesananDikemas) => ListPesananDikemas(listpesananDikemas),
                 )
                 .toList(),
           ),

@@ -1,6 +1,8 @@
 import 'package:apps/pages/home_admin/chat_admin_page.dart';
 import 'package:apps/pages/home_admin/home_admin_page.dart';
 import 'package:apps/pages/home_admin/list_admin_page.dart';
+import 'package:apps/pages/home_admin/order_dikemas_page.dart';
+import 'package:apps/pages/home_admin/order_dikirim_page.dart';
 import 'package:apps/pages/home_admin/profile_admin_page.dart';
 import 'package:apps/provider/page_provider.dart';
 import 'package:apps/theme.dart';
@@ -38,7 +40,7 @@ class MainAdminPage extends StatelessWidget {
           notchMargin: 12,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
-            backgroundColor: backgroundColor4,
+            backgroundColor: primaryColor,
             currentIndex: pageProvider.currentIndex,
             onTap: (value) {
               print(value);
@@ -52,11 +54,12 @@ class MainAdminPage extends StatelessWidget {
                     top: 20,
                     bottom: 10,
                   ),
-                  child: Icon(FontAwesomeIcons.home,
+                  child: Icon(
+                    FontAwesomeIcons.cartArrowDown,
                     size: 21,
                     color: pageProvider.currentIndex == 0
-                        ? primaryColor
-                        : Color(0xff808191),
+                        ? secondaryColor
+                        : backgroundColor1,
                   ),
                 ),
                 label: '',
@@ -67,11 +70,12 @@ class MainAdminPage extends StatelessWidget {
                     top: 20,
                     bottom: 10,
                   ),
-                  child: Icon(FontAwesomeIcons.commentDots,
+                  child: Icon(
+                    FontAwesomeIcons.dollyFlatbed,
                     size: 20,
                     color: pageProvider.currentIndex == 1
-                        ? primaryColor
-                        : Color(0xff808191),
+                        ? secondaryColor
+                        : backgroundColor1,
                   ),
                 ),
                 label: '',
@@ -82,11 +86,12 @@ class MainAdminPage extends StatelessWidget {
                     top: 20,
                     bottom: 10,
                   ),
-                  child: Icon(FontAwesomeIcons.shippingFast,
+                  child: Icon(
+                    FontAwesomeIcons.shippingFast,
                     size: 20,
                     color: pageProvider.currentIndex == 2
-                        ? primaryColor
-                        : Color(0xff808191),
+                        ? secondaryColor
+                        : backgroundColor1,
                   ),
                 ),
                 label: '',
@@ -97,11 +102,28 @@ class MainAdminPage extends StatelessWidget {
                     top: 20,
                     bottom: 10,
                   ),
-                  child: Icon(FontAwesomeIcons.userCircle,
+                  child: Icon(
+                    FontAwesomeIcons.comments,
                     size: 20,
                     color: pageProvider.currentIndex == 3
-                        ? primaryColor
-                        : Color(0xff808191),
+                        ? secondaryColor
+                        : backgroundColor1,
+                  ),
+                ),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  margin: EdgeInsets.only(
+                    top: 20,
+                    bottom: 10,
+                  ),
+                  child: Icon(
+                    FontAwesomeIcons.userCircle,
+                    size: 20,
+                    color: pageProvider.currentIndex == 4
+                        ? secondaryColor
+                        : backgroundColor1,
                   ),
                 ),
                 label: '',
@@ -118,12 +140,15 @@ class MainAdminPage extends StatelessWidget {
           return HomeAdminPage();
           break;
         case 1:
-          return ChatAdminPage();
+          return OrderDikemasPage();
           break;
         case 2:
-          return ListAdminPage();
+          return OrderDikirimPage();
           break;
         case 3:
+          return ChatAdminPage();
+          break;
+        case 4:
           return ProfileAdminPage();
           break;
 
@@ -135,7 +160,7 @@ class MainAdminPage extends StatelessWidget {
     return Scaffold(
       backgroundColor:
           pageProvider.currentIndex == 0 ? backgroundColor1 : backgroundColor3,
-      floatingActionButton: cartButton(),
+      // floatingActionButton: cartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customBottomNav(),
       body: body(),

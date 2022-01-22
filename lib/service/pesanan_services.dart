@@ -36,9 +36,20 @@ class PesananServices {
   }
 
   Future<PesananModel> getPesanan({String id}) async {
-    var url = '$baseUrl' + 'pesanan.php';
+    var url = '$baseUrl' + 'getPesanan.php';
     var response = await http.post(Uri.parse(url), body: {'id': id});
     if (response.statusCode == 200) {
+      print(response.body);
+      var data = jsonDecode(response.body)['pesanan'];
+      PesananModel pesanan = PesananModel.fromJson(data);
+      return pesanan;
+    }
+  }
+  Future<PesananModel> postStatus({String id, String status}) async {
+    var url = '$baseUrl' + 'posStatus.php';
+    var response = await http.post(Uri.parse(url), body: {'id': id, 'status':status});
+    if (response.statusCode == 200) {
+      print(response.body);
       var data = jsonDecode(response.body)['pesanan'];
       PesananModel pesanan = PesananModel.fromJson(data);
       return pesanan;

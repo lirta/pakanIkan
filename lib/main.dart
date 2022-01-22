@@ -2,11 +2,15 @@ import 'package:apps/pages/detail_chat_page.dart';
 import 'package:apps/pages/detail_pesanan_page.dart';
 import 'package:apps/pages/home/Shipping_page.dart';
 import 'package:apps/pages/home/chart_page.dart';
+import 'package:apps/pages/home/home_page.dart';
 import 'package:apps/pages/home/main_page.dart';
 import 'package:apps/pages/home/order_page.dart';
+import 'package:apps/pages/home_admin/add_admin_page.dart';
+import 'package:apps/pages/home_admin/admin_detail_pesanan_page.dart';
 import 'package:apps/pages/home_admin/chat_admin_page.dart';
 import 'package:apps/pages/home_admin/home_admin_page.dart';
 import 'package:apps/pages/home_admin/list_admin_page.dart';
+import 'package:apps/pages/home_admin/main_admin_page.dart';
 import 'package:apps/pages/home_admin/pesanan_admin_page.dart';
 import 'package:apps/pages/home_admin/profile_admin_page.dart';
 import 'package:apps/pages/index_page.dart';
@@ -59,11 +63,13 @@ class MyApp extends StatelessWidget {
           '/pembayaran-skip':(context) =>const PembayaranSkipPage(),
           '/order':(context) =>const OrderPage(),
           //admin
-          '/home-admin':(context) =>const HomeAdminPage(),
+          '/home-admin':(context) =>const MainAdminPage(),
+          '/admin-detail-pesanan':(context) =>const AdminDetailPesananPage(),
           '/chat-admin':(context) =>const ChatAdminPage(),
           '/profile-admin':(context) =>const ProfileAdminPage(),
           '/pesanan-admin':(context) =>const PesananAdminPage(),
           '/list-admin':(context) =>const ListAdminPage(),
+          '/add-admin':(context) =>const AddAdminPage(),
         },
         // home: SplashPage(),
       ),
