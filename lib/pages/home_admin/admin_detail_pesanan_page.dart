@@ -239,7 +239,13 @@ class _AdminDetailPesananPageState extends State<AdminDetailPesananPage> {
             margin: EdgeInsets.only(top: 30),
             child: TextButton(
               onPressed: () async {
-                if (await pesananProvider.postStatus(id: pesanan.id, status: pesanan.status)) {
+                if (await pesananProvider.postStatus(
+                    id: pesanan.id, status: pesanan.status)) {
+                  if (pesanan.status == "order") {
+                    Navigator.pushNamed(context, '/home-admin');
+                  }else{
+                    Navigator.pushNamed(context, '/home-admin');
+                  }
                   print("berhasil ubah status");
                 } else {}
                 // Navigator.pushNamed(context, '/pembayaran');

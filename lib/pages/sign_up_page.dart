@@ -68,7 +68,7 @@ class _SingUpPageState extends State<SingUpPage> {
             alamat: alamatController.text,
             email: emailController.text,
             password: passwordController.text)) {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/succes-login');
         } else {
           Flushbar(
             duration: Duration(seconds: 4),

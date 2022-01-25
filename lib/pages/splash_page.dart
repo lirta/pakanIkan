@@ -46,14 +46,14 @@ class _SplashPageState extends State<SplashPage> {
       if (await authProvider.getUser(id: id)) {
         if (rules == "1") {
         Timer(Duration(seconds: 2),
-            () => Navigator.pushNamed(context, '/home'));
+            () => Navigator.pushNamed(context, '/succes-login'));
         print(rules);
           
         }else{
           Provider.of<ListPesananProvider>(context, listen: false)
         .getPesananAdmin();
           Timer(Duration(seconds: 2),
-            () => Navigator.pushNamed(context, '/home-admin'));
+            () => Navigator.pushNamed(context, '/succes-login'));
         print(rules);
         }
         print("sudah login");

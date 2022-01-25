@@ -44,7 +44,7 @@ class _SignInPageState extends State<SignInPage> {
       } else {
         if (await authProvider.login(
             email: emailController.text, password: passwordController.text)) {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/succes-login');
         } else {
           Flushbar(
             duration: Duration(seconds: 4),

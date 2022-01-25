@@ -11,6 +11,8 @@ import 'package:apps/pages/home_admin/chat_admin_page.dart';
 import 'package:apps/pages/home_admin/home_admin_page.dart';
 import 'package:apps/pages/home_admin/list_admin_page.dart';
 import 'package:apps/pages/home_admin/main_admin_page.dart';
+import 'package:apps/pages/home_admin/order_dikemas_page.dart';
+import 'package:apps/pages/home_admin/order_dikirim_page.dart';
 import 'package:apps/pages/home_admin/pesanan_admin_page.dart';
 import 'package:apps/pages/home_admin/profile_admin_page.dart';
 import 'package:apps/pages/index_page.dart';
@@ -20,6 +22,7 @@ import 'package:apps/pages/pembayaran_skip_page.dart';
 import 'package:apps/pages/sign_in_page.dart';
 import 'package:apps/pages/sign_up_page.dart';
 import 'package:apps/pages/splash_page.dart';
+import 'package:apps/pages/succes_login.dart';
 import 'package:apps/provider/auth_provider.dart';
 import 'package:apps/provider/list_pemesanan_provider.dart';
 import 'package:apps/provider/page_provider.dart';
@@ -50,6 +53,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           '/':(context)=> const SplashPage(),
+          '/succes-login':(context)=> const SuccessLoginPage(),
           '/index':(context)=> const IndexPage(),
           '/sign-in':(context) =>const SignInPage(),
           '/sign-up':(context) =>const SingUpPage(),
@@ -70,6 +74,9 @@ class MyApp extends StatelessWidget {
           '/pesanan-admin':(context) =>const PesananAdminPage(),
           '/list-admin':(context) =>const ListAdminPage(),
           '/add-admin':(context) =>const AddAdminPage(),
+          '/order-dikemas':(context) =>const OrderDikemasPage(),
+          '/order-dikirim':(context) =>const OrderDikirimPage(),
+
         },
         // home: SplashPage(),
       ),

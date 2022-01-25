@@ -105,6 +105,7 @@ class AuthServices {
       prefs.setString("id", user.id);
       prefs.setString("rules", user.rules);
       print(user.id);
+      print(user.rules);
 
       return user;
     }
