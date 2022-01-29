@@ -28,10 +28,11 @@ class _MainPageState extends State<MainPage> {
   cekUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     rules = prefs.getString("rules");
-    if ( rules == "2") {
+    if (rules == "2") {
       Navigator.pushNamed(context, '/home-admin');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
@@ -39,7 +40,7 @@ class _MainPageState extends State<MainPage> {
     Widget cartButton() {
       return FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/sipping');
+          Navigator.pushNamed(context, '/produk');
         },
         backgroundColor: secondaryColor,
         child: Image.asset(
@@ -62,7 +63,7 @@ class _MainPageState extends State<MainPage> {
             backgroundColor: backgroundColor4,
             currentIndex: pageProvider.currentIndex,
             onTap: (value) {
-              print(value);
+              // print(value);
               pageProvider.currentIndex = value;
             },
             type: BottomNavigationBarType.fixed,
@@ -73,7 +74,8 @@ class _MainPageState extends State<MainPage> {
                     top: 20,
                     bottom: 10,
                   ),
-                  child: Icon(FontAwesomeIcons.home,
+                  child: Icon(
+                    FontAwesomeIcons.home,
                     size: 21,
                     color: pageProvider.currentIndex == 0
                         ? primaryColor
@@ -88,7 +90,8 @@ class _MainPageState extends State<MainPage> {
                     top: 20,
                     bottom: 10,
                   ),
-                  child: Icon(FontAwesomeIcons.commentDots,
+                  child: Icon(
+                    FontAwesomeIcons.commentDots,
                     size: 20,
                     color: pageProvider.currentIndex == 1
                         ? primaryColor
@@ -103,7 +106,8 @@ class _MainPageState extends State<MainPage> {
                     top: 20,
                     bottom: 10,
                   ),
-                  child: Icon(FontAwesomeIcons.shippingFast,
+                  child: Icon(
+                    FontAwesomeIcons.shippingFast,
                     size: 20,
                     color: pageProvider.currentIndex == 2
                         ? primaryColor
@@ -118,7 +122,8 @@ class _MainPageState extends State<MainPage> {
                     top: 20,
                     bottom: 10,
                   ),
-                  child: Icon(FontAwesomeIcons.userCircle,
+                  child: Icon(
+                    FontAwesomeIcons.userCircle,
                     size: 20,
                     color: pageProvider.currentIndex == 3
                         ? primaryColor

@@ -57,6 +57,7 @@ class AuthServices {
       return admin;
     }
   }
+
   Future<UserModel> posregister(
       {String nama,
       String hp,
@@ -83,6 +84,7 @@ class AuthServices {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool("is_login", true);
       prefs.setString("id", user.id);
+      prefs.setString("rules", user.rules);
       print(user.id);
 
       return user;
@@ -96,7 +98,7 @@ class AuthServices {
       body: {'email': email, 'password': password},
     );
     if (response.statusCode == 200) {
-    print(response.body);
+      print(response.body);
       var data = jsonDecode(response.body)['user'];
       UserModel user = UserModel.fromJson(data);
 

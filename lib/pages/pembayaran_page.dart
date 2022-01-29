@@ -241,8 +241,6 @@ class _PembayaranPageState extends State<PembayaranPage> {
       );
     }
 
-    
-
     Widget content() {
       return Container(
         width: double.infinity,

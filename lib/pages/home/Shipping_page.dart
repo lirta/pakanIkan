@@ -66,6 +66,11 @@ class _ShippingPageState extends State<ShippingPage> {
     UserModel user = authProvider.user;
     ProdukModel produk = produkProvider.produk;
     // String harga = produk.harga;
+    setState(() {
+      namaController.text = user.nama;
+      nohpController.text = user.hp;
+      alamatController.text = user.alamat;
+    });
 
     handlePesanan() async {
       setState(() {
