@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import '../list_pesanan.dart';
 
 class OrderDikemasPage extends StatefulWidget {
-  const OrderDikemasPage({ Key key }) : super(key: key);
+  const OrderDikemasPage({Key key}) : super(key: key);
 
   @override
   _OrderDikemasPageState createState() => _OrderDikemasPageState();
@@ -23,6 +23,7 @@ class _OrderDikemasPageState extends State<OrderDikemasPage> {
     cekUser();
     getpesanan();
     _refreshPesanan(context);
+    super.initState();
   }
 
   cekUser() async {
@@ -41,6 +42,7 @@ class _OrderDikemasPageState extends State<OrderDikemasPage> {
     await Provider.of<ListPesananProvider>(context, listen: false)
         .getPesananDikemas();
   }
+
   @override
   Widget build(BuildContext context) {
     ListPesananProvider listPesananProvider =
@@ -48,54 +50,52 @@ class _OrderDikemasPageState extends State<OrderDikemasPage> {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
 
-    Widget header() {
+    Widget headerr() {
       return Container(
-        margin: EdgeInsets.only(
-            top: defaultMargin, right: defaultMargin, left: defaultMargin),
-           child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Hallo,',
-                              style: primaryTextStyle.copyWith(
-                                  fontSize: 20, fontWeight: semiBold),
-                            ),
-                            Text(
-                              user.nama,
-                              style: primaryTextStyle.copyWith(
-                                  fontSize: 20, fontWeight: semiBold),
-                              maxLines: 2,
-                            ),
-                          ],
-                        ),
+          margin: EdgeInsets.only(
+              top: defaultMargin, right: defaultMargin, left: defaultMargin),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hallo,',
+                            style: primaryTextStyle.copyWith(
+                                fontSize: 20, fontWeight: semiBold),
+                          ),
+                          Text(
+                            user.nama,
+                            style: primaryTextStyle.copyWith(
+                                fontSize: 20, fontWeight: semiBold),
+                            maxLines: 2,
+                          ),
+                        ],
                       ),
-                      // Text(user.email,
-                      //   style: subtitleTextStyle.copyWith(fontSize: 16),
-                      // )
-                    ],
-                  ),
+                    ),
+                    // Text(user.email,
+                    //   style: subtitleTextStyle.copyWith(fontSize: 16),
+                    // )
+                  ],
                 ),
-                Container(
-                  width: 54,
-                  height: 54,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: AssetImage('assets/image_profile.png'))),
-                )
-              ],
-            )
-      );
+              ),
+              Container(
+                width: 54,
+                height: 54,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: AssetImage('assets/image_profile.png'))),
+              )
+            ],
+          ));
     }
 
-    
     Widget newArrivalsTitle() {
       return Container(
         margin: EdgeInsets.only(
@@ -116,27 +116,45 @@ class _OrderDikemasPageState extends State<OrderDikemasPage> {
     Widget newArrivals() {
       return Expanded(
         child: Container(
-            color: backgroundColor3,
+          color: backgroundColor3,
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            children: listPesananProvider.listpesananDikemas
-                .map(
-                  (listpesananDikemas) => ListPesananDikemas(listpesananDikemas),
-                )
-                .toList(),
+            children: listPesananProvider.listpesananDikemas != null
+                ? listPesananProvider.listpesananDikemas
+                    .map(
+                      (listpesananDikemas) =>
+                          ListPesananDikemas(listpesananDikemas),
+                    )
+                    .toList()
+                : Text(
+                    'Belum Ada Data',
+                    style: primaryTextStyle,
+                  ),
           ),
         ),
       );
     }
 
-    return Column(
-        children: 
-        [header(),
-        newArrivalsTitle(),
-        newArrivals(),
-        //  content()
-         ],
-      
+    Widget header() {
+      return AppBar(
+        backgroundColor: primaryColor,
+        elevation: 0,
+        centerTitle: true,
+        // automaticallyImplyLeading: false,
+        title: Text('Pesanan Dikemas'),
+      );
+    }
+
+    return Scaffold(
+      appBar: header(),
+      body: Column(
+        children: [
+          // header(),
+          // newArrivalsTitle(),
+          newArrivals(),
+          //  content()
+        ],
+      ),
     );
   }
 }

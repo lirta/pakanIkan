@@ -23,8 +23,9 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
   String id;
   void initState() {
     cekUser();
-    getpesanan();
+    // getpesanan();
     _refreshPesanan(context);
+    super.initState();
   }
 
   cekUser() async {
@@ -34,10 +35,10 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
     //   Navigator.pushNamed(context, '/home-admin');
     // }
   }
-  getpesanan() async {
-    await Provider.of<ListPesananProvider>(context, listen: false)
-        .getPesananAdmin();
-  }
+  // getpesanan() async {
+  //   await Provider.of<ListPesananProvider>(context, listen: false)
+  //       .getPesananAdmin();
+  // }
 
   Future<void> _refreshPesanan(BuildContext context) async {
     await Provider.of<ListPesananProvider>(context, listen: false)
@@ -51,7 +52,7 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
 
-    Widget header() {
+    Widget headerr() {
       return Container(
           margin: EdgeInsets.only(
               top: defaultMargin, right: defaultMargin, left: defaultMargin),
@@ -71,6 +72,7 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
                                 fontSize: 20, fontWeight: semiBold),
                           ),
                           Text(
+                            // "m",
                             user.nama,
                             style: primaryTextStyle.copyWith(
                                 fontSize: 20, fontWeight: semiBold),
@@ -97,46 +99,61 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
           ));
     }
 
-    Widget newArrivalsTitle() {
-      return Container(
-        margin: EdgeInsets.only(
-          top: defaultMargin,
-          left: defaultMargin,
-          right: defaultMargin,
-        ),
-        child: Text(
-          'List Order Masuk',
-          style: primaryTextStyle.copyWith(
-            fontSize: 22,
-            fontWeight: semiBold,
-          ),
-        ),
-      );
-    }
+    // Widget newArrivalsTitle() {
+    //   return Container(
+    //     margin: EdgeInsets.only(
+    //       top: defaultMargin,
+    //       left: defaultMargin,
+    //       right: defaultMargin,
+    //     ),
+    //     child: Text(
+    //       'List Order Masuk',
+    //       style: primaryTextStyle.copyWith(
+    //         fontSize: 22,
+    //         fontWeight: semiBold,
+    //       ),
+    //     ),
+    //   );
+    // }
 
     Widget newArrivals() {
       return Expanded(
         child: Container(
           color: backgroundColor3,
           child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            children: listPesananProvider.listpesananMasuk
-                .map(
-                  (listpesananMasuk) => ListPesananMasuk(listpesananMasuk),
-                )
-                .toList(),
-          ),
+              padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+              children: listPesananProvider.listpesananMasuk != null
+                  ? listPesananProvider.listpesananMasuk
+                      .map(
+                        (listpesananMasuk) =>
+                            ListPesananMasuk(listpesananMasuk),
+                      )
+                      .toList()
+                  : Text("Data Belum Ada")),
         ),
       );
     }
 
-    return Column(
-      children: [
-        header(),
-        newArrivalsTitle(),
-        newArrivals(),
-        //  content()
-      ],
+    Widget header() {
+      return AppBar(
+        backgroundColor: primaryColor,
+        elevation: 0,
+        centerTitle: true,
+        // automaticallyImplyLeading: false,
+        title: Text('Pesanan Masuk'),
+      );
+    }
+
+    return Scaffold(
+      appBar: header(),
+      body: Column(
+        children: [
+          // header(),
+          // newArrivalsTitle(),
+          newArrivals(),
+          //  content()
+        ],
+      ),
     );
   }
 }

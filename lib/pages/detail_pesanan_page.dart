@@ -7,7 +7,8 @@ class DetailPesananPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    final args =
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
     final id = args['id'];
     final nama = args['penerima'];
     final hp = args['hp'];
@@ -19,7 +20,7 @@ class DetailPesananPage extends StatelessWidget {
     final bukti = args['bukti'];
     final tgl_bukti = args['tgl_bukti'];
 
-     Widget header() {
+    Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
         elevation: 0,
@@ -33,7 +34,6 @@ class DetailPesananPage extends StatelessWidget {
       return ListView(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
         children: [
-          
           Container(
             margin: EdgeInsets.only(top: defaultMargin),
             padding: EdgeInsets.all(20),
@@ -46,7 +46,8 @@ class DetailPesananPage extends StatelessWidget {
               children: [
                 Text(
                   "Detail Pesanan",
-                  style: priceTextStyle.copyWith(fontWeight: semiBold, fontSize: 20),
+                  style: priceTextStyle.copyWith(
+                      fontWeight: semiBold, fontSize: 20),
                 ),
                 Divider(
                   thickness: 1,
@@ -65,7 +66,8 @@ class DetailPesananPage extends StatelessWidget {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(nama,
+                    Text(
+                      nama,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                       maxLines: 3,
                     ),
@@ -83,9 +85,9 @@ class DetailPesananPage extends StatelessWidget {
                         fontSize: 15,
                         // fontWeight: medium
                       ),
-                      
                     ),
-                    Text(alamat,
+                    Text(
+                      alamat,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                       maxLines: 2,
                     ),
@@ -104,7 +106,8 @@ class DetailPesananPage extends StatelessWidget {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(hp,
+                    Text(
+                      hp,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -122,7 +125,8 @@ class DetailPesananPage extends StatelessWidget {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(tgl_order,
+                    Text(
+                      tgl_order,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -140,7 +144,8 @@ class DetailPesananPage extends StatelessWidget {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(kg,
+                    Text(
+                      kg,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -158,7 +163,8 @@ class DetailPesananPage extends StatelessWidget {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(status,
+                    Text(
+                      status,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -176,11 +182,12 @@ class DetailPesananPage extends StatelessWidget {
                     Text(
                       "Total",
                       style: priceTextStyle.copyWith(
-                          fontSize: 20,
-                          fontWeight: semiBold),
+                          fontSize: 20, fontWeight: semiBold),
                     ),
-                    Text(total,
-                      style: priceTextStyle.copyWith(fontWeight: semiBold ,fontSize: 20),
+                    Text(
+                      total,
+                      style: priceTextStyle.copyWith(
+                          fontWeight: semiBold, fontSize: 20),
                     ),
                   ],
                 ),
@@ -193,7 +200,7 @@ class DetailPesananPage extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          
+
           //BUKTI pembayaran
           Container(
             margin: EdgeInsets.only(top: defaultMargin),
@@ -207,7 +214,8 @@ class DetailPesananPage extends StatelessWidget {
               children: [
                 Text(
                   "Bukti Pembayaran",
-                  style: priceTextStyle.copyWith(fontWeight: semiBold , fontSize: 20),
+                  style: priceTextStyle.copyWith(
+                      fontWeight: semiBold, fontSize: 20),
                 ),
                 Divider(
                   thickness: 1,
@@ -217,18 +225,18 @@ class DetailPesananPage extends StatelessWidget {
                   height: 12,
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.width * 0.9,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  // margin: EdgeInsets.only(
-                  //   top: defaultMargin,
-                  // ),
-                  child:Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(UrlGambar + bukti),
-                          )),
-                        )),
+                    height: MediaQuery.of(context).size.width * 0.9,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    // margin: EdgeInsets.only(
+                    //   top: defaultMargin,
+                    // ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(urlGambar + bukti),
+                      )),
+                    )),
               ],
             ),
           ),

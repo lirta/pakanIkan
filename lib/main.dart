@@ -8,6 +8,7 @@ import 'package:apps/pages/home/produk_page.dart';
 import 'package:apps/pages/home_admin/add_admin_page.dart';
 import 'package:apps/pages/home_admin/admin_detail_pesanan_page.dart';
 import 'package:apps/pages/home_admin/chat_admin_page.dart';
+import 'package:apps/pages/home_admin/home_admin_page.dart';
 import 'package:apps/pages/home_admin/list_admin_page.dart';
 import 'package:apps/pages/home_admin/main_admin_page.dart';
 import 'package:apps/pages/home_admin/order_dikemas_page.dart';
@@ -16,6 +17,7 @@ import 'package:apps/pages/home_admin/pesanan_admin_page.dart';
 import 'package:apps/pages/home_admin/profile_admin_page.dart';
 import 'package:apps/pages/index_page.dart';
 import 'package:apps/pages/invois_page.dart';
+import 'package:apps/pages/list_pesanan_masuk.dart';
 import 'package:apps/pages/pembayaran_page.dart';
 import 'package:apps/pages/pembayaran_skip_page.dart';
 import 'package:apps/pages/sign_in_page.dart';
@@ -29,6 +31,8 @@ import 'package:apps/provider/pesanan_provider.dart';
 import 'package:apps/provider/produk_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'pages/home_admin/order_sampai_page .dart';
 
 void main() {
   runApp(const MyApp());
@@ -66,7 +70,7 @@ class MyApp extends StatelessWidget {
           '/pembayaran-skip': (context) => const PembayaranSkipPage(),
           '/order': (context) => const OrderPage(),
           //admin
-          '/home-admin': (context) => const MainAdminPage(),
+          // '/home-admin': (context) => const MainAdminPage(),
           '/admin-detail-pesanan': (context) => const AdminDetailPesananPage(),
           '/chat-admin': (context) => const ChatAdminPage(),
           '/profile-admin': (context) => const ProfileAdminPage(),
@@ -76,6 +80,10 @@ class MyApp extends StatelessWidget {
           '/order-dikemas': (context) => const OrderDikemasPage(),
           '/order-dikirim': (context) => const OrderDikirimPage(),
           '/produk': (context) => const ProdukPage(),
+          '/order-masuk': (context) => const HomeAdminPage(),
+          '/dikemas': (context) => const OrderDikemasPage(),
+          '/dikirim': (context) => const OrderDikirimPage(),
+          '/sampai': (context) => const OrderSampaiPage(),
         },
         // home: SplashPage(),
       ),

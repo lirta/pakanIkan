@@ -1,6 +1,7 @@
 import 'package:apps/model/user_model.dart';
 import 'package:apps/pages/list_pesanan.dart';
 import 'package:apps/pages/list_pesanan_dikirim.dart';
+import 'package:apps/pages/list_pesanan_sampai.dart';
 import 'package:apps/provider/auth_provider.dart';
 import 'package:apps/provider/list_pemesanan_provider.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,14 @@ import 'package:provider/provider.dart';
 
 import '../../theme.dart';
 
-class OrderDikirimPage extends StatefulWidget {
-  const OrderDikirimPage({Key key}) : super(key: key);
+class OrderSampaiPage extends StatefulWidget {
+  const OrderSampaiPage({Key key}) : super(key: key);
 
   @override
-  _OrderDikirimPageState createState() => _OrderDikirimPageState();
+  _OrderSampaiPageState createState() => _OrderSampaiPageState();
 }
 
-class _OrderDikirimPageState extends State<OrderDikirimPage> {
+class _OrderSampaiPageState extends State<OrderSampaiPage> {
   int selectedIndex = 0;
   String rules;
   String id;
@@ -123,10 +124,9 @@ class _OrderDikirimPageState extends State<OrderDikirimPage> {
           color: backgroundColor3,
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            children: listPesananProvider.listpesananDikirim
+            children: listPesananProvider.listpesananSampai
                 .map(
-                  (listpesananDikirim) =>
-                      ListPesananDikirim(listpesananDikirim),
+                  (listpesananSampai) => ListPesananSampai(listpesananSampai),
                 )
                 .toList(),
           ),
@@ -140,7 +140,7 @@ class _OrderDikirimPageState extends State<OrderDikirimPage> {
         elevation: 0,
         centerTitle: true,
         // automaticallyImplyLeading: false,
-        title: Text('Pesanan Dikirim'),
+        title: Text('Pesanan Diterima'),
       );
     }
 

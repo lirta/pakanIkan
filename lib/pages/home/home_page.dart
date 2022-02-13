@@ -23,11 +23,11 @@ class _HomePageState extends State<HomePage> {
   cekUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     rules = prefs.getString("rules");
-    if ( rules == "2") {
+    if (rules == "2") {
       Navigator.pushNamed(context, '/home-admin');
     }
   }
- 
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);

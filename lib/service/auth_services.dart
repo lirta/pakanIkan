@@ -49,12 +49,12 @@ class AuthServices {
     print(response.body);
     if (response.statusCode == 200) {
       print(response.body);
-      var data = jsonDecode(response.body)['user'];
-      UserModel admin = UserModel.fromJson(data);
+      // var data = jsonDecode(response.body)['user'];
+      // UserModel admin = UserModel.fromJson(data);
 
-      // print(user.id);
+      // // print(user.id);
 
-      return admin;
+      // return admin;
     }
   }
 

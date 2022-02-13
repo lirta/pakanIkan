@@ -3,7 +3,7 @@ import 'package:apps/service/auth_services.dart';
 import 'package:flutter/cupertino.dart';
 
 class AuthProvider with ChangeNotifier {
-   UserModel _user;
+  UserModel _user;
   //  UserModel _admin;
 
   UserModel get user => _user;
@@ -18,21 +18,22 @@ class AuthProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Future<bool> getUser({ String id}) async {
+  Future<bool> getUser({String id}) async {
     try {
-      UserModel user = await AuthServices().getUser(id:id);
+      UserModel user = await AuthServices().getUser(id: id);
       _user = user;
       return true;
     } catch (e) {
       return false;
     }
   }
+
   Future<bool> register(
-      { String nama,
-       String hp,
-       String alamat,
-       String email,
-       String password}) async {
+      {String nama,
+      String hp,
+      String alamat,
+      String email,
+      String password}) async {
     try {
       UserModel user = await AuthServices().posregister(
           nama: nama, hp: hp, alamat: alamat, email: email, password: password);
@@ -42,32 +43,30 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
+
   Future<bool> addadmin(
-      { String nama,
-       String hp,
-       String alamat,
-       String email,
-       String password}) async {
+      {String nama,
+      String hp,
+      String alamat,
+      String email,
+      String password}) async {
     try {
-      UserModel user = await AuthServices().addAdmin(
+      await AuthServices().addAdmin(
           nama: nama, hp: hp, alamat: alamat, email: email, password: password);
-      _user = user;
+      // _user = user;
       return true;
     } catch (e) {
       return false;
     }
   }
 
-
   Future<bool> login({
     String email,
     String password,
   }) async {
     try {
-      UserModel user = await AuthServices().login(
-        email: email,
-        password: password
-      );
+      UserModel user =
+          await AuthServices().login(email: email, password: password);
 
       _user = user;
       return true;

@@ -28,12 +28,12 @@ class _SuccessLoginPageState extends State<SuccessLoginPage> {
 
     // ignore: unrelated_type_equality_checks
     if (rules == "1") {
-       Timer( Duration(seconds: 2), () => Navigator.pushNamed(context, '/home'));
+      Timer(Duration(seconds: 2), () => Navigator.pushNamed(context, '/home'));
       print("ini rules konsumen");
       print(rules);
     } else {
       Timer(Duration(seconds: 2),
-          () => Navigator.pushNamed(context, '/home-admin'));
+          () => Navigator.pushNamed(context, '/profile-admin'));
       print("ini rules admin");
       print(rules);
     }

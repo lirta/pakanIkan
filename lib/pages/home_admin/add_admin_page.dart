@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class AddAdminPage extends StatefulWidget {
-  const AddAdminPage({ Key key }) : super(key: key);
+  const AddAdminPage({Key key}) : super(key: key);
 
   @override
   _AddAdminPageState createState() => _AddAdminPageState();
@@ -32,13 +32,11 @@ class _AddAdminPageState extends State<AddAdminPage> {
         isLoading = true;
       });
 
-      if (!(
-          nameController.text.trim() != ""&&
+      if (!(nameController.text.trim() != "" &&
           hpController.text.trim() != "" &&
           alamatController.text.trim() != "" &&
           emailController.text.trim() != "" &&
-          passwordController.text.trim() != "" 
-          )) {
+          passwordController.text.trim() != "")) {
         Flushbar(
           duration: Duration(seconds: 4),
           flushbarPosition: FlushbarPosition.TOP,
@@ -52,7 +50,7 @@ class _AddAdminPageState extends State<AddAdminPage> {
           backgroundColor: Color(0xffff5c83),
           message: 'Password minimal 6 character',
         ).show(context);
-      }  else if (!(emailController.text.contains('@'))) {
+      } else if (!(emailController.text.contains('@'))) {
         Flushbar(
           duration: Duration(seconds: 4),
           flushbarPosition: FlushbarPosition.TOP,
@@ -67,7 +65,7 @@ class _AddAdminPageState extends State<AddAdminPage> {
             alamat: alamatController.text,
             email: emailController.text,
             password: passwordController.text)) {
-          Navigator.pushNamed(context, '/home-admin');
+          Navigator.pushNamed(context, '/profile-admin');
           // Flushbar(
           //   duration: Duration(seconds: 4),
           //   flushbarPosition: FlushbarPosition.TOP,
@@ -105,12 +103,8 @@ class _AddAdminPageState extends State<AddAdminPage> {
             SizedBox(
               height: 2,
             ),
-            Text(
-              'Isi form dengan benar',
-              style: subtitleTextStyle.copyWith(
-                fontSize: 18
-              )
-            ),
+            Text('Isi form dengan benar',
+                style: subtitleTextStyle.copyWith(fontSize: 18)),
           ],
         ),
       );
@@ -144,7 +138,11 @@ class _AddAdminPageState extends State<AddAdminPage> {
               child: Center(
                 child: Row(
                   children: [
-                    Icon(FontAwesomeIcons.userAlt, size: 16, color: primaryColor,),
+                    Icon(
+                      FontAwesomeIcons.userAlt,
+                      size: 16,
+                      color: primaryColor,
+                    ),
                     SizedBox(
                       width: 16,
                     ),
@@ -195,7 +193,11 @@ class _AddAdminPageState extends State<AddAdminPage> {
               child: Center(
                 child: Row(
                   children: [
-                    Icon(FontAwesomeIcons.mobileAlt, size: 16, color: primaryColor,),
+                    Icon(
+                      FontAwesomeIcons.mobileAlt,
+                      size: 16,
+                      color: primaryColor,
+                    ),
                     SizedBox(
                       width: 16,
                     ),
@@ -217,7 +219,6 @@ class _AddAdminPageState extends State<AddAdminPage> {
         ),
       );
     }
-
 
     Widget alamatInput() {
       return Container(
@@ -247,7 +248,11 @@ class _AddAdminPageState extends State<AddAdminPage> {
               child: Center(
                 child: Row(
                   children: [
-                    Icon(FontAwesomeIcons.mapMarkedAlt, size: 16, color: primaryColor,),
+                    Icon(
+                      FontAwesomeIcons.mapMarkedAlt,
+                      size: 16,
+                      color: primaryColor,
+                    ),
                     SizedBox(
                       width: 16,
                     ),
@@ -298,7 +303,11 @@ class _AddAdminPageState extends State<AddAdminPage> {
               child: Center(
                 child: Row(
                   children: [
-                    Icon(FontAwesomeIcons.envelope, size: 16, color: primaryColor,),
+                    Icon(
+                      FontAwesomeIcons.envelope,
+                      size: 16,
+                      color: primaryColor,
+                    ),
                     SizedBox(
                       width: 16,
                     ),
@@ -320,7 +329,6 @@ class _AddAdminPageState extends State<AddAdminPage> {
         ),
       );
     }
-
 
     Widget passwordInput() {
       return Container(
@@ -403,7 +411,10 @@ class _AddAdminPageState extends State<AddAdminPage> {
 
     Widget footer() {
       return Container(
-        margin: EdgeInsets.only(bottom: 30,top: 30,),
+        margin: EdgeInsets.only(
+          bottom: 30,
+          top: 30,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -449,7 +460,7 @@ class _AddAdminPageState extends State<AddAdminPage> {
                 emailInput(),
                 passwordInput(),
                 // isLoading ? LoadingButton() :
-                 signUpButton(),
+                signUpButton(),
                 // Spacer(),
                 // footer(),
               ],
@@ -459,4 +470,4 @@ class _AddAdminPageState extends State<AddAdminPage> {
       ),
     );
   }
-  }
+}

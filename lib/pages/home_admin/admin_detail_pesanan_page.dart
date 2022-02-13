@@ -226,46 +226,45 @@ class _AdminDetailPesananPageState extends State<AdminDetailPesananPage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: NetworkImage(UrlGambar + pesanan.gambar),
+                              image: NetworkImage(urlGambar + pesanan.gambar),
                             )),
                           )),
                     ],
                   ),
                 )
               : Container(),
-          Container(
-            height: 50,
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 30),
-            child: TextButton(
-              onPressed: () async {
-                if (await pesananProvider.postStatus(
-                    id: pesanan.id, status: pesanan.status)) {
-                  if (pesanan.status == "order") {
-                    Navigator.pushNamed(context, '/home-admin');
-                  }else{
-                    Navigator.pushNamed(context, '/home-admin');
-                  }
-                  print("berhasil ubah status");
-                } else {}
-                // Navigator.pushNamed(context, '/pembayaran');
-              },
-              // handlePesanan,
-              style: TextButton.styleFrom(
-                backgroundColor: primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+          pesanan.status == "Sampai"
+              ? SizedBox()
+              : Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(top: 30),
+                  child: TextButton(
+                    onPressed: () async {
+                      print(pesanan.status);
+                      if (await pesananProvider.postStatus(
+                          id: pesanan.id, status: pesanan.status)) {
+                        Navigator.pushNamed(context, '/profile-admin');
+                        print("berhasil ubah status");
+                      } else {}
+                      // Navigator.pushNamed(context, '/pembayaran');
+                    },
+                    // handlePesanan,
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      'Konfirmasi Orderan',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              child: Text(
-                'Konfirmasi Orderan',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: medium,
-                ),
-              ),
-            ),
-          ),
           SizedBox(
             height: 12,
           ),

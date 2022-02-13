@@ -1,5 +1,6 @@
 import 'package:apps/model/user_model.dart';
 import 'package:apps/provider/auth_provider.dart';
+import 'package:apps/provider/list_pemesanan_provider.dart';
 import 'package:apps/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileAdminPage extends StatefulWidget {
-  const ProfileAdminPage({ Key key }) : super(key: key);
+  const ProfileAdminPage({Key key}) : super(key: key);
 
   @override
   _ProfileAdminPageState createState() => _ProfileAdminPageState();
@@ -18,6 +19,12 @@ class _ProfileAdminPageState extends State<ProfileAdminPage> {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
+    ListPesananProvider listPesananProvider =
+        Provider.of<ListPesananProvider>(context);
+    getmasuk() async {
+      if (await listPesananProvider.getPesananAdmin()) {}
+    }
+
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -41,27 +48,27 @@ class _ProfileAdminPageState extends State<ProfileAdminPage> {
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text( user.nama,
+                    Text(user.nama,
                         style: primaryTextStyle.copyWith(
                             fontSize: 20, fontWeight: semiBold)),
-                            user.rules == "2" ?
-                    Text( "Owner",
-                        style: primaryTextStyle.copyWith(
-                            fontSize: 24, fontWeight: semiBold)):
-                    Text( "Admin",
-                        style: primaryTextStyle.copyWith(
-                            fontSize: 24, fontWeight: semiBold)),
+                    user.rules == "2"
+                        ? Text("Owner",
+                            style: primaryTextStyle.copyWith(
+                                fontSize: 24, fontWeight: semiBold))
+                        : Text("Admin",
+                            style: primaryTextStyle.copyWith(
+                                fontSize: 24, fontWeight: semiBold)),
                   ],
                 )),
                 GestureDetector(
-                    onTap:  () async {
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    prefs.remove("id");
-                    prefs.setBool("is_login", false);
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/index', (route) => false);
-                  },
+                    onTap: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.remove("id");
+                      prefs.setBool("is_login", false);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/index', (route) => false);
+                    },
                     child: Icon(
                       FontAwesomeIcons.signOutAlt,
                       size: 40,
@@ -93,6 +100,83 @@ class _ProfileAdminPageState extends State<ProfileAdminPage> {
       );
     }
 
+    Widget pesanan() {
+      return Expanded(
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(
+            horizontal: defaultMargin,
+          ),
+          decoration: BoxDecoration(
+            color: backgroundColor3,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Pesanan',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 20,
+                  fontWeight: semiBold,
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  if (await listPesananProvider.getPesananAdmin()) {
+                    Navigator.pushNamed(context, '/order-masuk');
+                  } else {
+                    print("gagal");
+                  }
+                },
+                child: menuItem(
+                  'Masuk',
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  if (await listPesananProvider.getPesananDikemas()) {
+                    Navigator.pushNamed(context, '/dikemas');
+                  } else {
+                    print("gagal");
+                  }
+                },
+                child: menuItem(
+                  'Dikemas',
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  if (await listPesananProvider.getPesananDikirim()) {
+                    Navigator.pushNamed(context, '/dikirim');
+                  } else {
+                    print("gagal");
+                  }
+                },
+                child: menuItem(
+                  'Dikirim',
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  if (await listPesananProvider.getPesananSampai()) {
+                    Navigator.pushNamed(context, '/sampai');
+                  } else {
+                    print("gagal");
+                  }
+                },
+                child: menuItem(
+                  'Sampai',
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     Widget content() {
       return Expanded(
         child: Container(
@@ -110,43 +194,34 @@ class _ProfileAdminPageState extends State<ProfileAdminPage> {
                 height: 20,
               ),
               Text(
-                'Account',
+                'Owner',
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: semiBold,
                 ),
               ),
               GestureDetector(
-                onTap: (){},
-                // () {
-                //   Navigator.pushNamed(context, '/edit-profile');
-                // },
-                child: menuItem(
-                  'Edit Profile',
-                ),
-              ),
-              user.rules == "2" ?
-              GestureDetector(
-                onTap: 
-                () {
+                onTap: () {
                   Navigator.pushNamed(context, '/add-admin');
                 },
                 child: menuItem(
                   'Tambah Admin',
                 ),
-              ):
-              SizedBox(
-                height: 30,
-              ),
-              
+              )
             ],
           ),
         ),
       );
     }
 
-    return Column(
-      children: [header(), content()],
+    return Scaffold(
+      body: Column(
+        children: [
+          header(),
+          pesanan(),
+          user.rules == "2" ? content() : SizedBox()
+        ],
+      ),
     );
   }
 }
