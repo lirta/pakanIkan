@@ -41,6 +41,7 @@ class _PembayaranSkipPageState extends State<PembayaranSkipPage> {
     final kg = args['kg'];
     final total = args['total'];
     final status = args['status'];
+    final bonus = args['bonus'];
     updateImage() async {
       setState(() {
         isLoading = true;
@@ -208,6 +209,25 @@ class _PembayaranSkipPageState extends State<PembayaranSkipPage> {
                     ),
                     Text(
                       kg,
+                      style: primaryTextStyle.copyWith(fontWeight: medium),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Bonus (Kg)",
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 15,
+                        // fontWeight: medium
+                      ),
+                    ),
+                    Text(
+                      bonus == null || bonus == "" ? 0 : bonus,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],

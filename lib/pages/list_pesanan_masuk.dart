@@ -57,15 +57,15 @@ class ListPesananMasuk extends StatelessWidget {
                   SizedBox(
                     height: 3,
                   ),
-                  Text(
-                    listpesananMasuk.hp_penerima,
-                    // 'lirta',
-                    style: blackTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
-                    ),
-                    maxLines: 1,
-                  ),
+                  // Text(
+                  //   listpesananMasuk.hp_penerima,
+                  //   // 'lirta',
+                  //   style: blackTextStyle.copyWith(
+                  //     fontSize: 16,
+                  //     fontWeight: semiBold,
+                  //   ),
+                  //   maxLines: 1,
+                  // ),
                   SizedBox(
                     height: 3,
                   ),

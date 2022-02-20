@@ -149,6 +149,25 @@ class _AdminDetailPesananPageState extends State<AdminDetailPesananPage> {
                 SizedBox(
                   height: 12,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Bonus (Kg)",
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 12,
+                        // fontWeight: medium
+                      ),
+                    ),
+                    Text(
+                      pesanan.bonus == "" || pesanan.bonus == null ? 0 : pesanan.bonus,
+                      style: primaryTextStyle.copyWith(fontWeight: medium),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
                 pesanan.tgl_bayar != ""
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -136,7 +136,7 @@ class _ShippingPageState extends State<ShippingPage> {
               height: 2,
             ),
             Text(
-              'Silahkan isi semua form dengan benar',
+              'Bonus 2kg jika memesan sebesar 50kg \nBonus 5kg jika memesan sebesar 150kg \nBonus 10kg jika memesan sebesar 300kg \nBonus 20kg jika memesan sebesar 500kg ',
               style: subtitleTextStyle,
             ),
           ],
@@ -146,7 +146,7 @@ class _ShippingPageState extends State<ShippingPage> {
 
     Widget namapenerima() {
       return Container(
-        margin: EdgeInsets.only(top: 40),
+        margin: EdgeInsets.only(top: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -19,6 +19,7 @@ class DetailPesananPage extends StatelessWidget {
     final status = args['status'];
     final bukti = args['bukti'];
     final tgl_bukti = args['tgl_bukti'];
+    final bonus = args['bonus'];
 
     Widget header() {
       return AppBar(
@@ -163,8 +164,7 @@ class DetailPesananPage extends StatelessWidget {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(
-                      "bonus",
+                    Text(bonus == "" || bonus == null ? 0 : bonus,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],

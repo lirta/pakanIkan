@@ -38,7 +38,7 @@ class ListPesananModel {
     status = json['status'];
     gambar = json['gambar'];
     tgl_bayar = json['tgl_bayar'];
-    bonus = json['bonus'];
+    bonus = json['bonus'].toString();
   }
 
   Map<String, dynamic> toJson() {

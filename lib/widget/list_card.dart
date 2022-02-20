@@ -36,6 +36,7 @@ class ListCard extends StatelessWidget {
                 'kg': lispesanan.kg,
                 'total': lispesanan.total,
                 'status': lispesanan.status,
+                'bonus': lispesanan.bonus,
               });
       },
       child: Container(
@@ -85,6 +86,21 @@ class ListCard extends StatelessWidget {
                       ),
                       Text(
                         lispesanan.tgl_pemesanan,
+                        style: blackTextStyle.copyWith(fontWeight: semiBold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Bonus :",
+                        style: blackTextStyle.copyWith(fontWeight: semiBold),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        lispesanan.bonus == null || lispesanan.bonus == "" ? 0 : lispesanan.bonus,
                         style: blackTextStyle.copyWith(fontWeight: semiBold),
                       ),
                     ],
