@@ -13,35 +13,30 @@ class ListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        lispesanan.gambar != null ?
-        Navigator.pushNamed(
-          context,
-          '/detail-pesanan', arguments: 
-          {'id': lispesanan.id,
-          'penerima':lispesanan.nama_penerima,
-          'hp':lispesanan.hp_penerima,
-          'alamat':lispesanan.alamat_penerima,
-          'tgl_order':lispesanan.tgl_pemesanan,
-          'kg':lispesanan.kg,
-          'total':lispesanan.total,
-          'status':lispesanan.status,
-          'bukti':lispesanan.gambar,
-          'tgl_bukti':lispesanan.tgl_bayar,
-          }
-        ) :
-        Navigator.pushNamed(
-          context,
-          '/pembayaran-skip', arguments: 
-          {'id': lispesanan.id,
-          'penerima':lispesanan.nama_penerima,
-          'hp':lispesanan.hp_penerima,
-          'alamat':lispesanan.alamat_penerima,
-          'tgl_order':lispesanan.tgl_pemesanan,
-          'kg':lispesanan.kg,
-          'total':lispesanan.total,
-          'status':lispesanan.status,
-          }
-        );
+        lispesanan.gambar != null
+            ? Navigator.pushNamed(context, '/detail-pesanan', arguments: {
+                'id': lispesanan.id,
+                'penerima': lispesanan.nama_penerima,
+                'hp': lispesanan.hp_penerima,
+                'alamat': lispesanan.alamat_penerima,
+                'tgl_order': lispesanan.tgl_pemesanan,
+                'kg': lispesanan.kg,
+                'total': lispesanan.total,
+                'status': lispesanan.status,
+                'bukti': lispesanan.gambar,
+                'tgl_bukti': lispesanan.tgl_bayar,
+                'bonus': lispesanan.bonus,
+              })
+            : Navigator.pushNamed(context, '/pembayaran-skip', arguments: {
+                'id': lispesanan.id,
+                'penerima': lispesanan.nama_penerima,
+                'hp': lispesanan.hp_penerima,
+                'alamat': lispesanan.alamat_penerima,
+                'tgl_order': lispesanan.tgl_pemesanan,
+                'kg': lispesanan.kg,
+                'total': lispesanan.total,
+                'status': lispesanan.status,
+              });
       },
       child: Container(
         margin: EdgeInsets.only(top: 20),

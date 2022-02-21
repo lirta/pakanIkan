@@ -78,21 +78,34 @@ class ListPesanan extends StatelessWidget {
                   SizedBox(
                     height: 3,
                   ),
-                  listpesananMasuk.gambar == null ?
-                  Text("Pembayaran Tertunda",
+                  Text(
+                    listpesananMasuk.status,
                     // 'Lierta',
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
                     ),
-                  ):
-                  Text("Menunggu Komfirmasi Pembayaran ",
-                    // 'Lierta',
-                    style: blackTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
-                    ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  listpesananMasuk.gambar == null
+                      ? Text(
+                          "Pembayaran Tertunda",
+                          // 'Lierta',
+                          style: blackTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: semiBold,
+                          ),
+                        )
+                      : Text(
+                          "Menunggu Komfirmasi Pembayaran ",
+                          // 'Lierta',
+                          style: blackTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: semiBold,
+                          ),
+                        )
                 ],
               ),
             ),

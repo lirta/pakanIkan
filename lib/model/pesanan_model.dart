@@ -10,20 +10,22 @@ class PesananModel {
   String status;
   String gambar;
   String tgl_bayar;
+  String bonus;
 
-  PesananModel(
-      {this.id,
-      this.id_konsumen,
-      this.nama_penerima,
-      this.alamat_penerima,
-      this.hp_penerima,
-      this.kg,
-      this.total,
-      this.tgl_pemesanan,
-      this.status,
-      this.gambar,
-      this.tgl_bayar,
-      });
+  PesananModel({
+    this.id,
+    this.id_konsumen,
+    this.nama_penerima,
+    this.alamat_penerima,
+    this.hp_penerima,
+    this.kg,
+    this.total,
+    this.tgl_pemesanan,
+    this.status,
+    this.gambar,
+    this.tgl_bayar,
+    this.bonus,
+  });
 
   PesananModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -33,10 +35,11 @@ class PesananModel {
     hp_penerima = json['hp_penerima'];
     kg = json['kg'];
     total = json['total'];
-    tgl_pemesanan = json['tgl_pemesanan'];
+    tgl_pemesanan = json['tgl_pemesanan'].toString();
     status = json['status'];
     gambar = json['gambar'];
     tgl_bayar = json['tgl_bayar'];
+    bonus = json['bonus'];
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +55,7 @@ class PesananModel {
       'status': status,
       'gambar': gambar,
       'tgl_bayar': tgl_bayar,
+      'bonus': bonus,
     };
   }
 }

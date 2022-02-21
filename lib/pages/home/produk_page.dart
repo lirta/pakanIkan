@@ -60,7 +60,7 @@ class _ProdukPageState extends State<ProdukPage> {
                           borderRadius: BorderRadius.circular(20),
                           child: Image.asset(
                             'assets/produk.jpeg',
-                            width: 120,
+                            width: 100,
                           ),
                         ),
                         SizedBox(
@@ -90,6 +90,7 @@ class _ProdukPageState extends State<ProdukPage> {
                                       fontSize: 14,
                                       fontWeight: semiBold,
                                     ),
+                                    maxLines: 2,
                                   ),
                                 ],
                               ),

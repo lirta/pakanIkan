@@ -159,21 +159,6 @@ class _OrderPageState extends State<OrderPage> {
       );
     }
 
-    Widget newArrivals() {
-      return Container(
-        margin: EdgeInsets.only(
-          top: 14,
-        ),
-        child: Column(
-          children: listPesananProvider.listpesanan
-              .map(
-                (listpesanan) => ListPesanan(listpesanan),
-              )
-              .toList(),
-        ),
-      );
-    }
-
     return RefreshIndicator(
       onRefresh: () => _refreshPesanan(context),
       child: Column(

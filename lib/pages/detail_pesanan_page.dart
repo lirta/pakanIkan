@@ -157,6 +157,25 @@ class DetailPesananPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
+                      "Bonus (Kg)",
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 15,
+                        // fontWeight: medium
+                      ),
+                    ),
+                    Text(
+                      "bonus",
+                      style: primaryTextStyle.copyWith(fontWeight: medium),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
                       "Status",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 15,

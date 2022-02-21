@@ -12,7 +12,6 @@ class InvoicPage extends StatefulWidget {
 }
 
 class _InvoicPageState extends State<InvoicPage> {
-  
   @override
   Widget build(BuildContext context) {
     PesananProvider pesananProvider = Provider.of<PesananProvider>(context);
@@ -141,7 +140,9 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.nama_penerima,
+                    Text(
+                      pesanan.nama_penerima,
+                      // Text(pesanan.nama_penerima,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                       maxLines: 3,
                     ),
@@ -159,9 +160,9 @@ class _InvoicPageState extends State<InvoicPage> {
                         fontSize: 12,
                         // fontWeight: medium
                       ),
-                      
                     ),
-                    Text(pesanan.alamat_penerima,
+                    Text(
+                      pesanan.alamat_penerima,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                       maxLines: 2,
                     ),
@@ -180,7 +181,8 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.hp_penerima,
+                    Text(
+                      pesanan.hp_penerima,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -198,7 +200,8 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.tgl_pemesanan,
+                    Text(
+                      pesanan.tgl_pemesanan,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -216,7 +219,27 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.kg,
+                    Text(
+                      pesanan.kg,
+                      style: primaryTextStyle.copyWith(fontWeight: medium),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Bonus (Kg)",
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 12,
+                        // fontWeight: medium
+                      ),
+                    ),
+                    Text(
+                      pesanan.bonus,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -234,7 +257,8 @@ class _InvoicPageState extends State<InvoicPage> {
                         // fontWeight: medium
                       ),
                     ),
-                    Text(pesanan.status,
+                    Text(
+                      pesanan.status,
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -255,7 +279,8 @@ class _InvoicPageState extends State<InvoicPage> {
                           // fontSize: 12,
                           fontWeight: semiBold),
                     ),
-                    Text(pesanan.total,
+                    Text(
+                      pesanan.total,
                       style: priceTextStyle.copyWith(fontWeight: semiBold),
                     ),
                   ],
@@ -296,31 +321,30 @@ class _InvoicPageState extends State<InvoicPage> {
           SizedBox(
             height: 12,
           ),
-           Container(
-        height: 50,
-        width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
-        child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
+          Container(
+            height: 50,
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 30),
+            child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                },
 
-          // handlePesanan,
-          style: TextButton.styleFrom(
-            backgroundColor: primaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-          child: Text(
+                // handlePesanan,
+                style: TextButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
                   'Lewati',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
                   ),
-                )
-        ),
-      ),
+                )),
+          ),
           SizedBox(
             height: 12,
           ),
